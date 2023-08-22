@@ -1,0 +1,41 @@
+.InputField {
+    font-family: Abel;
+    background-color: cornflowerblue;
+    border-radius: 5px;
+    margin: 10%;
+    padding: 10px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.InputText {
+    font-size: 20px;
+    max-width: 170px;
+    border: none;
+    border-radius: 20px;
+    padding: 0px 10px;
+}
+
+.InputDate {
+    cursor: pointer;
+    font-size: 20px;
+    border: none;
+    border-radius: 20px;
+}
+
+.InputButton {
+    cursor: pointer;
+    font-family: Abel;
+    font-size: 20px;
+    padding: 10px 20px;
+    margin-left: 15px;
+    background-color: #2d4980;
+    color: white;
+    border: none;
+    border-radius: 20px;
+}
+
+.InputButton:hover {
+    background-color: #4a608d;
+}

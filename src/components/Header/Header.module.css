@@ -1,0 +1,17 @@
+.headerBlock {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    border-bottom: 2px solid #E5E5EA;
+
+}
+
+.headerComponent {
+    cursor: pointer;
+    border: 1px solid black;
+    padding: 3px;
+    margin: 10px;
+    border-radius: 10px;
+}
