@@ -1,0 +1,50 @@
+body {
+    font-family: Abel;
+}
+
+.hotelItemImg {
+    display: flex;
+    min-width: 100px;
+    min-height: 100px;
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.hotelItemInfo {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 10px;
+    gap: 10px;
+}
+
+.hotelItemImgContainer {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hotelItem {
+    padding: 10px;
+    border: 2px solid #c7bdbd;
+    border-radius: 5px;
+    display: flex;
+    width: 90%;
+}
+
+.hotelItem + .hotelItem{
+    margin-top: 20px;
+}
+
+.hotelItemName {
+    font-size: 30px;
+    color: #2d4980;
+}
+
+.hotelItemContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
