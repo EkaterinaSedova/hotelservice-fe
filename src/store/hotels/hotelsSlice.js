@@ -6,7 +6,7 @@ export const getHotels = createAsyncThunk(
     'hotels/getHotels',
     async (page, hotelAPI) => {
     try {
-        const res = await axios(`${BASE_URL}/hotels/${page}?limit=2`);
+        const res = await axios(`${BASE_URL}/hotels/${page}?limit=10`);
         return res.data;
     } catch (err) {
         console.log(err);
@@ -14,8 +14,22 @@ export const getHotels = createAsyncThunk(
     }
 })
 
+export const getHotelById = createAsyncThunk(
+    'hotels/getHotelById',
+    async (id, hotelAPI) => {
+        try {
+            const res = await axios(`${BASE_URL}/hotels/hotel/${id}`);
+            return res.data;
+        } catch (err) {
+            console.log(err);
+            return hotelAPI.rejectWithValue(err)
+        }
+    }
+)
+
 const initialState = {
     list: [],
+    hotel: {},
     isLoading: false,
 }
 
@@ -31,6 +45,16 @@ const hotelsSlice = createSlice({
             state.isLoading = false;
         })
         builder.addCase(getHotels.rejected, (state) => {
+            state.isLoading = false;
+        })
+        builder.addCase(getHotelById.pending, (state) => {
+            state.isLoaing = true;
+        })
+        builder.addCase(getHotelById.fulfilled, (state, action) => {
+            state.hotel = action.payload;
+            state.isLoading = false;
+        })
+        builder.addCase(getHotelById.rejected, (state) => {
             state.isLoading = false;
         })
     }

@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from '../Main.module.css'
+import {NavLink} from "react-router-dom";
+import {HOTEL_ROUTE} from "../../../routing/paths";
 
 const HotelItem = ({hotels}) => {
     return (
@@ -10,9 +12,10 @@ const HotelItem = ({hotels}) => {
                         <img className={styles.hotelItemImg} src={'http://localhost:80/' + hotel.images[0]} alt={'hotelImage'}/>
                     </div>
                     <div className={styles.hotelItemInfo}>
-                        <span className={styles.hotelItemName}>{hotel.name}</span>
+                        <NavLink to={HOTEL_ROUTE + `/${hotel.id}`} className={styles.hotelItemName}>{hotel.name}</NavLink>
                         <span>{hotel.description}</span>
                         <span>{hotel.starRating} ★</span>
+                        <span>{hotel.country}, {hotel.city}, {hotel.address}</span>
                     </div>
                 </div>
             ))}

@@ -1,0 +1,26 @@
+.hotelImg {
+    display: flex;
+    min-width: 200px;
+    min-height: 200px;
+    max-width: 400px;
+    max-height: 400px;
+}
+
+.hotelInfo {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 10px;
+    gap: 10px;
+}
+
+.hotelName {
+    font-size: 35px;
+    color: #2d4980;
+    text-decoration: none;
+}
+
+.hotel {
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+}

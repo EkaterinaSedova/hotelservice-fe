@@ -1,9 +1,9 @@
-import MainPage from "./components/Main/MainPage";
+import AppRouter from "./routing/AppRouter";
 
 function App() {
   return (
     <div>
-      <MainPage/>
+      <AppRouter/>
     </div>
   );
 }
