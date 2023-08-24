@@ -13,7 +13,7 @@ const Hotel = () => {
 
     useEffect(() => {
         (async () => {
-            await dispatch(getHotelById(id));
+            await dispatch(getHotelById({id}));
             setLoading(false);
         })()
     }, [id, dispatch])
