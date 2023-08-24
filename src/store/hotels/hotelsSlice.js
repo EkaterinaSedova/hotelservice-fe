@@ -4,9 +4,9 @@ import {BASE_URL} from "../../utils/consts";
 
 export const getHotels = createAsyncThunk(
     'hotels/getHotels',
-    async (page, hotelAPI) => {
+    async (payload, hotelAPI) => {
     try {
-        const res = await axios(`${BASE_URL}/hotels/${page}?limit=10`);
+        const res = await axios(`${BASE_URL}/hotels/${payload.page}?limit=10`);
         return res.data;
     } catch (err) {
         console.log(err);
@@ -16,9 +16,9 @@ export const getHotels = createAsyncThunk(
 
 export const getHotelById = createAsyncThunk(
     'hotels/getHotelById',
-    async (id, hotelAPI) => {
+    async (payload, hotelAPI) => {
         try {
-            const res = await axios(`${BASE_URL}/hotels/hotel/${id}`);
+            const res = await axios(`${BASE_URL}/hotels/hotel/${payload.id}`);
             return res.data;
         } catch (err) {
             console.log(err);

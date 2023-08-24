@@ -3,7 +3,7 @@ import styles from '../Main.module.css'
 import {NavLink} from "react-router-dom";
 import {HOTEL_ROUTE} from "../../../routing/paths";
 
-const HotelItem = ({hotels}) => {
+const Hotels = ({hotels}) => {
     return (
         <div className={styles.hotelItemContainer}>
             {hotels.map(hotel => (
@@ -23,4 +23,4 @@ const HotelItem = ({hotels}) => {
     );
 };
 
-export default HotelItem;
+export default Hotels;
