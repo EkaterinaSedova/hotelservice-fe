@@ -1,0 +1,86 @@
+.roomButton {
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 10px;
+    margin-left: 15px;
+    background-color: #2d4980;
+    color: white;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.roomButton:hover {
+    background-color: #4a608d;
+}
+
+.roomButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.roomItemImg {
+    display: flex;
+    min-width: 100px;
+    min-height: 100px;
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.roomItemInfo {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 10px;
+    gap: 10px;
+    font-size: 20px;
+}
+
+.roomItemImgContainer {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.roomItem {
+    padding: 20px;
+    background-color: #d6dcf1;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.leftBlock {
+    display: flex;
+    gap: 20px
+}
+
+.roomItem + .roomItem{
+    margin-top: 20px;
+}
+
+.roomItemName {
+    font-size: 35px;
+    color: #2d4980;
+    text-decoration: none;
+}
+
+.roomItemContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}

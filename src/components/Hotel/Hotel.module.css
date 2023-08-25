@@ -24,3 +24,37 @@
     display: flex;
     flex-direction: row;
 }
+.pageButtons {
+    margin: 10px 0px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.pageButtons span {
+    font-size: 20px;
+    padding: 3px 10px;
+    background-color: #657d94;
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pageButtons button {
+    cursor: pointer;
+    border: none;
+    font-family: Abel;
+    font-size: 20px;
+    padding: 3px 10px;
+    background-color: #2d4980;
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pageButtons button:hover {
+    background-color: #4a608d;
+}

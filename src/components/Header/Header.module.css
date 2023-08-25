@@ -1,17 +1,19 @@
 .headerBlock {
-    font-size: 18px;
+    font-size: 22px;
     display: flex;
     align-items: center;
     width: 100%;
     justify-content: space-between;
-    border-bottom: 2px solid #E5E5EA;
+    background-color: #2d4980;
 
 }
 
 .headerComponent {
+    text-decoration: none;
+    color: black;
     cursor: pointer;
-    border: 1px solid black;
-    padding: 3px;
+    background-color: #ffffff;
+    padding: 3px 10px;
     margin: 10px;
     border-radius: 10px;
 }

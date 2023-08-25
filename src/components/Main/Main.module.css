@@ -13,8 +13,9 @@ body {
 .hotelItemInfo {
     display: flex;
     flex-direction: column;
-    margin: 0px 10px;
+    margin: 20px 10px;
     gap: 10px;
+    font-size: 20px;
 }
 
 .hotelItemImgContainer {
@@ -26,12 +27,14 @@ body {
 }
 
 .hotelItem {
-    padding: 10px;
-    border: 2px solid #c7bdbd;
+    padding: 20px;
+    background-color: #d6dcf1;
     border-radius: 5px;
+    gap: 20px;
     display: flex;
     width: 90%;
 }
+
 
 .hotelItem + .hotelItem{
     margin-top: 20px;

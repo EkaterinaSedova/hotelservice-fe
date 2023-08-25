@@ -2,50 +2,38 @@ body {
     font-family: Abel;
 }
 
-.roomItemImg {
+.pageButtons {
+    margin: 10px 0px;
     display: flex;
-    min-width: 100px;
-    min-height: 100px;
-    max-width: 200px;
-    max-height: 200px;
-}
-
-.roomItemInfo {
-    display: flex;
-    flex-direction: column;
-    margin: 0px 10px;
+    justify-content: center;
     gap: 10px;
 }
 
-.roomItemImgContainer {
-    width: 200px;
-    height: 200px;
+.pageButtons span {
+    font-size: 20px;
+    padding: 3px 10px;
+    background-color: #657d94;
+    color: white;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.roomItem {
-    padding: 10px;
-    border: 2px solid #c7bdbd;
-    border-radius: 5px;
-    display: flex;
-    width: 90%;
-}
-
-.roomItem + .roomItem{
-    margin-top: 20px;
-}
-
-.roomItemName {
-    font-size: 35px;
-    color: #2d4980;
-    text-decoration: none;
-}
-
-.roomItemContainer {
+.pageButtons button {
+    cursor: pointer;
+    border: none;
+    font-family: Abel;
+    font-size: 20px;
+    padding: 3px 10px;
+    background-color: #2d4980;
+    color: white;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+}
+
+.pageButtons button:hover {
+    background-color: #4a608d;
 }
