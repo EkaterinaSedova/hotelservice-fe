@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import {BASE_URL} from "../../utils/consts";
+import jwt_decode from "jwt-decode";
 
 export const getUser = createAsyncThunk(
     "users/getUser",
@@ -44,7 +45,9 @@ export const loginUser = createAsyncThunk(
             console.log(payload);
             console.log(data.token)
             localStorage.setItem('token', data.token)
-            return payload;
+            const {id} = jwt_decode(localStorage.getItem('token'));
+            const res = await axios(`${BASE_URL}/users/${id}`);
+            return res.data;
         } catch (err) {
             console.log(err);
             return userAPI.rejectWithValue(err);

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import styles from './Header.module.css'
-import {Link} from "react-router-dom";
-import {MAIN_ROUTE} from "../../routing/paths";
+import {Link, useNavigate} from "react-router-dom";
+import {MAIN_ROUTE, PROFILE_ROUTE} from "../../routing/paths";
 import {useDispatch, useSelector} from "react-redux";
 import {getUser, removeUser, toggleForm} from "../../store/user/userSlice";
 import jwt_decode from "jwt-decode";
@@ -9,6 +9,7 @@ import UserForm from "../UserForm/UserForm";
 
 const Header = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const {currentUser} = useSelector(({user}) => user);
     useEffect(() => {
         (async () => {
@@ -26,10 +27,16 @@ const Header = () => {
         dispatch(removeUser());
         localStorage.removeItem('token');
     }
+
+    const handleUserClick = () => {
+        navigate(PROFILE_ROUTE);
+    }
+
     return (
         <div>
             <header className={styles.headerBlock}>
                 <Link to={MAIN_ROUTE} className={styles.headerComponent}>HOME</Link>
+                <div className={styles.user}>Hello, {currentUser ? <span className={styles.userName} onClick={handleUserClick}>{currentUser.name}</span> : <span>guest</span>}</div>
                 {currentUser ?
                     <div className={styles.headerComponent} onClick={() => handleLogOutClick()}>log out</div>
                     :

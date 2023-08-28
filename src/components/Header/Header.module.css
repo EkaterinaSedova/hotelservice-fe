@@ -17,3 +17,12 @@
     margin: 10px;
     border-radius: 10px;
 }
+
+.user {
+    color: white;
+}
+
+.userName {
+    cursor: pointer;
+    text-decoration: underline;
+}

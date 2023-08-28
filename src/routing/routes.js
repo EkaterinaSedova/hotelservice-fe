@@ -1,7 +1,8 @@
-import {HOTEL_ROUTE, MAIN_ROUTE, SEARCH_ROUTE} from "./paths";
+import {HOTEL_ROUTE, MAIN_ROUTE, PROFILE_ROUTE, SEARCH_ROUTE} from "./paths";
 import MainPage from "../components/Main/MainPage";
 import Hotel from "../components/Hotel/Hotel";
 import SearchPage from "../components/SearchPage/SearchPage";
+import ProfilePage from "../components/ProfilePage/ProfilePage";
 
 export const publicRoutes = [
     {
@@ -16,5 +17,11 @@ export const publicRoutes = [
         path: SEARCH_ROUTE,
         Component: SearchPage,
     },
+]
 
+export const authRoutes = [
+    {
+        path: PROFILE_ROUTE,
+        Component: ProfilePage,
+    }
 ]
