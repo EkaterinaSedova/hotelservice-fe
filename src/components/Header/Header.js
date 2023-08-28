@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import styles from './Header.module.css'
 import {Link} from "react-router-dom";
 import {MAIN_ROUTE} from "../../routing/paths";
 import {useDispatch, useSelector} from "react-redux";
-import {getUser, loginUser, removeUser, toggleForm} from "../../store/user/userSlice";
+import {getUser, removeUser, toggleForm} from "../../store/user/userSlice";
 import jwt_decode from "jwt-decode";
 import UserForm from "../UserForm/UserForm";
 
@@ -20,10 +20,6 @@ const Header = () => {
     }, [dispatch])
     const handleLoginClick = () => {
         dispatch(toggleForm(true))
-        dispatch(loginUser({
-            login: 'user123',
-            password: 'qwerty123'
-        }))
     }
 
     const handleLogOutClick = () => {

@@ -18,7 +18,12 @@ export const createUser = createAsyncThunk(
     "users/createUser",
     async (payload, userAPI) => {
         try {
-            const {data} = await axios.post(`${BASE_URL}/auth/registration`, payload);
+            const {data} = await axios.post(`${BASE_URL}/auth/registration`, {
+                login: payload.login,
+                password: payload.password,
+                name: payload.name,
+                isAdmin: false
+            });
             localStorage.setItem('token', data.token)
             return payload;
         } catch (err) {

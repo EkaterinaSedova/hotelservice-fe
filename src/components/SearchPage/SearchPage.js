@@ -4,7 +4,7 @@ import InputField from "../InputField/InputField";
 import {useDispatch, useSelector} from "react-redux";
 import {getAvailableRooms} from "../../store/rooms/roomsSlice";
 import Rooms from "../ListOfRooms/Rooms";
-import {useLocation, useParams} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import styles from './Search.module.css'
 
 const SearchPage = () => {
@@ -15,21 +15,25 @@ const SearchPage = () => {
     const city = new URLSearchParams(search).get('city');
     const inDate = new URLSearchParams(search).get('inDate');
     const outDate = new URLSearchParams(search).get('outDate');
+    const fridge = new URLSearchParams(search).get('fridge');
+    const places = new URLSearchParams(search).get('places');
+    const price = new URLSearchParams(search).get('price');
+
     const { list } = useSelector(({rooms}) => rooms);
 
     useEffect(() => {
-        dispatch(getAvailableRooms( { page, country, city, inDate, outDate } ))
+        dispatch(getAvailableRooms( { page, country, city, inDate, outDate, fridge, places, price } ))
     }, [page, dispatch])
 
 
     const handleNextClick = () => {
         setPage(page+1);
-        dispatch(getAvailableRooms( { page, country, city, inDate, outDate } ))
+        dispatch(getAvailableRooms( { page, country, city, inDate, outDate, fridge, places, price } ))
     }
 
     const handlePrevClick = () => {
         setPage(page-1);
-        dispatch(getAvailableRooms( { page, country, city, inDate, outDate } ))
+        dispatch(getAvailableRooms( { page, country, city, inDate, outDate, fridge, places, price } ))
     }
 
     const isAvailable = () => {

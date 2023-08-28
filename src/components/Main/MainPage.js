@@ -4,6 +4,7 @@ import InputField from "../InputField/InputField";
 import {useDispatch, useSelector} from "react-redux";
 import {getHotels} from "../../store/hotels/hotelsSlice";
 import Hotels from "./ListOfHotels/Hotels";
+import styles from "../SearchPage/Search.module.css";
 
 const MainPage = () => {
     const dispatch = useDispatch();
@@ -23,6 +24,11 @@ const MainPage = () => {
         dispatch(getHotels({page}))
     }
 
+    const isAvailable = () => {
+        if(list.length < 10) return false;
+        return true;
+    }
+
     const { list } = useSelector(({hotels}) => hotels);
 
     return (
@@ -30,8 +36,17 @@ const MainPage = () => {
             <Header></Header>
             <InputField></InputField>
             <Hotels hotels={list}></Hotels>
-            {page>1 && <button onClick={() => handlePrevClick()}>prev</button>}
-            {<button onClick={() => handleNextClick()}>next</button>}
+            <div className={styles.pageButtons}>
+                {page>1 ?
+                    <button onClick={() => handlePrevClick()}>{`< < < prev`}</button>
+                    :
+                    <span>{`< < < prev`}</span>
+                }
+                {isAvailable() ?
+                    <button onClick={() => handleNextClick()}>next > > ></button>
+                    :
+                    <span>next > > ></span>}
+            </div>
         </>
     );
 };

@@ -1,8 +1,7 @@
 .InputField {
-    font-family: Abel;
     background-color: cornflowerblue;
     border-radius: 5px;
-    margin: 10%;
+    margin: 10% 10% 0 10%;
     padding: 10px;
     display: flex;
     gap: 15px;
@@ -38,4 +37,19 @@
 
 .InputButton:hover {
     background-color: #4a608d;
+}
+
+.filters {
+    display: flex;
+    align-items: center;
+    margin: 1% 0 5% 15%;
+    gap: 10px;
+}
+
+.filter {
+    max-width: 50px;
+}
+
+.filters input {
+    font-size: 14px;
 }
