@@ -53,3 +53,9 @@
 .filters input {
     font-size: 14px;
 }
+
+.filters select {
+    font-size: 14px;
+    font-family: Abel;
+    border-radius: 20px;
+}

@@ -30,6 +30,10 @@ const InputField = () => {
         if(value === 'max') setValues({...values, price: 'desc'});
     }
     const handleFindClick = () => {
+        if(!values.inDate || !values.outDate || (!values.city && !values.country)) {
+            alert('Вы должны указать даты заезда и выезда, а также место (страну или город)')
+            return;
+        }
         let route = SEARCH_ROUTE + `/?country=${values.country}` + `&city=${values.city}` + `&inDate=${values.inDate}` + `&outDate=${values.outDate}`;
         if(values.fridge) route += `&fridge=${values.fridge}`;
         if(values.price) route += `&price=${values.price}`;
@@ -110,7 +114,7 @@ const InputField = () => {
                 <div>
                     <span>Price: </span>
                     <select id={'price'} onChange={handleSelectChange}>
-                        <option id={'nvm'}>nvm</option>
+                        <option id={'nvm'}>select...</option>
                         <option id={'min'}>min</option>
                         <option id={'max'}>max</option>
                     </select>
