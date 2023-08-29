@@ -4,6 +4,7 @@ import jwt_decode from "jwt-decode";
 import {getUser} from "../../store/user/userSlice";
 import Header from "../Header/Header";
 import {getBookingsOfUser} from "../../store/bookings/bookingsSlice";
+import Booking from "../Booking/Booking";
 
 const ProfilePage = () => {
     const dispatch = useDispatch();
@@ -25,7 +26,10 @@ const ProfilePage = () => {
                 Hello, {currentUser.name}
             </div>
             {list.map(booking => (
-              <div key={booking.id}>{booking.inDate}, {booking.outDate}</div>
+              <Booking
+                  key={booking.id}
+                  booking={booking}
+              />
             ))
             }
         </>

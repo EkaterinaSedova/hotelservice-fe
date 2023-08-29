@@ -45,6 +45,18 @@ export const getRoomsInHotel = createAsyncThunk(
         }
     })
 
+export const getRoom = createAsyncThunk(
+    'rooms/getRoom',
+    async (payload, roomAPI) => {
+        try {
+            const res = await axios(`${BASE_URL}/rooms/room/${payload.roomId}`);
+            return res.data;
+        } catch (err) {
+            console.log(err);
+            return roomAPI.rejectWithValue(err)
+        }
+    })
+
 const initialState = {
     list: [],
     room: {},
@@ -76,6 +88,10 @@ const roomsSlice = createSlice({
             state.isLoading = false;
         })
         builder.addCase(deleteRoom.fulfilled, (state) => {
+            state.isLoading = false;
+        })
+        builder.addCase(getRoom.fulfilled, (state, action) => {
+            state.room = action.payload;
             state.isLoading = false;
         })
     }
