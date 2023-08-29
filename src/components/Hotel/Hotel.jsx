@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {getHotelById} from "../../store/hotels/hotelsSlice";
+import {deleteHotel, getHotelById} from "../../store/hotels/hotelsSlice";
 import Header from "../Header/Header";
 import styles from './Hotel.module.css'
-import {useParams} from "react-router-dom";
-import {getAvailableRooms, getRoomsInHotel} from "../../store/rooms/roomsSlice";
+import {useNavigate, useParams} from "react-router-dom";
+import {getRoomsInHotel} from "../../store/rooms/roomsSlice";
 import Rooms from "../ListOfRooms/Rooms";
+import {MAIN_ROUTE} from "../../routing/paths";
 
 const Hotel = () => {
     const [page, setPage] = useState(1);
@@ -14,6 +15,8 @@ const Hotel = () => {
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
     const {id} = useParams();
+    const {currentUser} = useSelector(({user}) => user);
+    const navigate = useNavigate();
 
     useEffect(() => {
         (async () => {
@@ -38,6 +41,13 @@ const Hotel = () => {
         return true;
     }
 
+    const handleDeleteClick = (id) => {
+        if(window.confirm(`Вы уверены, что не пожалеете о своём решении удалить отель ${hotel.name}?`)) {
+            dispatch(deleteHotel({id}));
+            navigate(MAIN_ROUTE);
+        }
+    }
+
     return (
         <>
             <Header/>
@@ -53,6 +63,13 @@ const Hotel = () => {
                             <span className={styles.hotelName}>{hotel.name}</span>
                             <span>{hotel.description}</span>
                             <span>{hotel.starRating} ★</span>
+                            {
+                                currentUser && (currentUser.isAdmin &&
+                                    <div className={styles.deleteButton} onClick={() => {handleDeleteClick(hotel.id)}}>
+                                        Delete hotel
+                                    </div>
+                                )
+                            }
                         </div>
                     </div>
                     <Rooms rooms={list}></Rooms>

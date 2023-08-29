@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import styles from './Header.module.css'
 import {Link, useNavigate} from "react-router-dom";
-import {MAIN_ROUTE, PROFILE_ROUTE} from "../../routing/paths";
+import {ADMIN_ROUTE, MAIN_ROUTE, PROFILE_ROUTE} from "../../routing/paths";
 import {useDispatch, useSelector} from "react-redux";
 import {getUser, removeUser, toggleForm} from "../../store/user/userSlice";
 import jwt_decode from "jwt-decode";
@@ -29,19 +29,34 @@ const Header = () => {
     }
 
     const handleUserClick = () => {
-        navigate(PROFILE_ROUTE);
+        navigate(PROFILE_ROUTE + `/${currentUser.id}`);
+    }
+
+    const handleAdminClick = () => {
+        navigate(ADMIN_ROUTE)
     }
 
     return (
         <div>
             <header className={styles.headerBlock}>
                 <Link to={MAIN_ROUTE} className={styles.headerComponent}>HOME</Link>
-                <div className={styles.user}>Hello, {currentUser ? <span className={styles.userName} onClick={handleUserClick}>{currentUser.name}</span> : <span>guest</span>}</div>
-                {currentUser ?
-                    <div className={styles.headerComponent} onClick={() => handleLogOutClick()}>log out</div>
+                <div className={styles.user}>
+                    Hello, {currentUser ?
+                    <span className={styles.userName} onClick={handleUserClick}>{currentUser.name}</span>
                     :
-                    <div className={styles.headerComponent} onClick={() => handleLoginClick()}>LOGIN</div>
-                }
+                    <span>guest</span>}
+                </div>
+                <div>
+                    {currentUser ?
+                        <div className={styles.headerComponent} onClick={() => handleLogOutClick()}>log out</div>
+                        :
+                        <div className={styles.headerComponent} onClick={() => handleLoginClick()}>LOGIN</div>}
+                    {currentUser &&
+                        (currentUser.isAdmin &&
+                            <div className={styles.headerComponent} onClick={() => handleAdminClick()}>admin page</div>
+                        )
+                    }
+                </div>
             </header>
             <UserForm />
         </div>

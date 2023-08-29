@@ -58,3 +58,21 @@
 .pageButtons button:hover {
     background-color: #4a608d;
 }
+
+.deleteButton {
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 10px;
+    margin-left: 15px;
+    background-color: #de2020;
+    color: white;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deleteButton:hover {
+    background-color: #d95757;
+}

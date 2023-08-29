@@ -14,6 +14,22 @@ export const getHotels = createAsyncThunk(
     }
 })
 
+export const deleteHotel = createAsyncThunk(
+    'hotels/deleteHotel',
+    async (payload, hotelAPI) => {
+        try {
+            const res = await axios.delete(`${BASE_URL}/hotels/${payload.id}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            });
+            return res.data;
+        } catch (err) {
+            console.log(err);
+            return hotelAPI.rejectWithValue(err)
+        }
+    }
+)
 export const getHotelById = createAsyncThunk(
     'hotels/getHotelById',
     async (payload, hotelAPI) => {
@@ -56,6 +72,9 @@ const hotelsSlice = createSlice({
         })
         builder.addCase(getHotelById.rejected, (state) => {
             state.isLoading = false;
+        })
+        builder.addCase(deleteHotel.fulfilled, (state) => {
+            state.isLoading = false
         })
     }
 })

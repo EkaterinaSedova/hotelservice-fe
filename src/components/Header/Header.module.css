@@ -9,6 +9,8 @@
 }
 
 .headerComponent {
+    display: flex;
+    justify-content: center;
     text-decoration: none;
     color: black;
     cursor: pointer;

@@ -2,8 +2,18 @@ import React from 'react';
 import styles from './Rooms.module.css'
 import {HOTEL_ROUTE} from "../../routing/paths";
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {deleteRoom} from "../../store/rooms/roomsSlice";
 
-const Hotels = ({rooms}) => {
+const Rooms = ({rooms}) => {
+    const {currentUser} = useSelector(({user}) => user);
+    const dispatch = useDispatch();
+    const handleDeleteClick = (id) => {
+        if(window.confirm(`Вы уверены, что НЕ ПОЖАЛЕЕТЕ, если удалите данную комнату??`)) {
+            dispatch(deleteRoom({id}));
+            window.location.reload();
+        }
+    }
     return (
         <div className={styles.roomItemContainer} onClick={() => {}}>
             {rooms.map(room => (
@@ -34,6 +44,13 @@ const Hotels = ({rooms}) => {
                                 Go to hotel page
                             </Link>
                         }
+                        {
+                            currentUser && (currentUser.isAdmin &&
+                                <div className={styles.deleteButton} onClick={() => handleDeleteClick(room.id)}>
+                                Delete room
+                                </div>
+                            )
+                        }
                     </div>
                 </div>
             ))}
@@ -41,4 +58,4 @@ const Hotels = ({rooms}) => {
     );
 };
 
-export default Hotels;
+export default Rooms;
