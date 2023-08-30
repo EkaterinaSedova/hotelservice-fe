@@ -4,6 +4,9 @@ import {useDispatch} from "react-redux";
 import {getAvailableRooms} from "../../store/rooms/roomsSlice";
 import {useNavigate} from "react-router-dom";
 import {SEARCH_ROUTE} from "../../routing/paths";
+import {toggleForm} from "../../store/user/userSlice";
+import {toggleCalendar} from "../../store/calendar/calendarSlice";
+import Calendar from "../Calendar/Calendar";
 
 const InputField = () => {
     const   navigate = useNavigate();
@@ -16,6 +19,7 @@ const InputField = () => {
         price: '',
         places: '',
     });
+    const dispatch = useDispatch();
 
     const handleChange = ({ target: { value, name } }) => {
         setValues({ ...values, [name]: value });
@@ -41,6 +45,13 @@ const InputField = () => {
         navigate(route);
         window.location.reload();
     }
+
+    const handleDateClick = () => {
+        dispatch(toggleCalendar(true))
+    }
+
+    const closeCalendar = () => dispatch(toggleCalendar(false));
+
     return (
         <>
             <div className={styles.InputField}>
@@ -77,9 +88,9 @@ const InputField = () => {
                     className={styles.InputDate}
                     value={values.outDate}
                     onChange={handleChange}
+
                 />
                 <button
-                    type={"submit"}
                     className={styles.InputButton}
                     onClick={() => handleFindClick()}
                 >
@@ -119,7 +130,9 @@ const InputField = () => {
                         <option id={'max'}>max</option>
                     </select>
                 </div>
+                <button onClick={handleDateClick}>временная кнопка для календаря</button>
             </div>
+            <Calendar closeCalendar={closeCalendar}/>
         </>
     );
 };
