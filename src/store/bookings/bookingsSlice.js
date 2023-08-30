@@ -18,6 +18,23 @@ export const getBookingsOfUser = createAsyncThunk(
     }
 )
 
+export const deleteBooking = createAsyncThunk(
+    'bookings/deleteBooking',
+    async (payload, bookingAPI) => {
+        try {
+            const res = await axios.delete(`${BASE_URL}/bookings/${payload.id}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            });
+            return res.data;
+        } catch (err) {
+            console.log(err);
+            return bookingAPI.rejectWithValue(err)
+        }
+    }
+)
+
 const initialState = {
     list: [],
     isLoading: false,

@@ -1,0 +1,55 @@
+.booking {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #d6dcf1;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+
+    font-size: 20px;
+    line-height: 40px;
+}
+
+.deleteButton {
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 10px;
+    margin-left: 15px;
+    background-color: #de2020;
+    color: white;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deleteButton:hover {
+    background-color: #d95757;
+}
+
+.bookingButton {
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 10px;
+    margin-left: 15px;
+    background-color: #2d4980;
+    color: white;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bookingButton:hover {
+    background-color: #4a608d;
+}
+
+
+.bookingButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
