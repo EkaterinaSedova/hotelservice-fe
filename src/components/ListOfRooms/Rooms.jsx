@@ -4,6 +4,9 @@ import {HOTEL_ROUTE} from "../../routing/paths";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {deleteRoom} from "../../store/rooms/roomsSlice";
+import {toggleForm} from "../../store/user/userSlice";
+import {toggleBookingForm} from "../../store/bookings/bookingsSlice";
+import BookingForm from "../BookingForm/BookingForm";
 
 const Rooms = ({rooms}) => {
     const {currentUser} = useSelector(({user}) => user);
@@ -14,6 +17,16 @@ const Rooms = ({rooms}) => {
             window.location.reload();
         }
     }
+    const {inDate, outDate} = useSelector(({calendar}) => calendar)
+    const handleBookClick = () => {
+        if (!currentUser) {
+            dispatch(toggleForm(true));
+            return;
+        }
+        if (inDate && outDate) dispatch(toggleBookingForm(true));
+        else alert("Сначала выберите даты заезда и выезда.")
+    }
+
     return (
         <div className={styles.roomItemContainer} onClick={() => {}}>
             {rooms.map(room => (
@@ -36,7 +49,7 @@ const Rooms = ({rooms}) => {
                         </div>
                     </div>
                     <div className={styles.roomButtons}>
-                        <div className={styles.roomButton}>Book</div>
+                        <div className={styles.roomButton} onClick={() => {handleBookClick(room)}}>Book</div>
                         {
                             window.location.pathname === '/search/'
                             &&
@@ -51,6 +64,7 @@ const Rooms = ({rooms}) => {
                                 </div>
                             )
                         }
+                        <BookingForm room={room}/>
                     </div>
                 </div>
             ))}

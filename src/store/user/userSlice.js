@@ -42,8 +42,6 @@ export const loginUser = createAsyncThunk(
                 login: payload.login,
                 password: payload.password
             });
-            console.log(payload);
-            console.log(data.token)
             localStorage.setItem('token', data.token)
             const {id} = jwt_decode(localStorage.getItem('token'));
             const res = await axios(`${BASE_URL}/users/${id}`);

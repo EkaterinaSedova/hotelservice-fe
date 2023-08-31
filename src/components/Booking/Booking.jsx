@@ -36,7 +36,7 @@ const Booking = ({booking}) => {
     }
 
     const handleDeleteClick = () => {
-        if(window.confirm('ВЫ УВЕРЕНЫ?????????????????')) {
+        if(window.confirm('Вы уверены, что хотите удалить данную бронь?')) {
             dispatch(deleteBooking({id: booking.id}));
             window.location.reload();
         }

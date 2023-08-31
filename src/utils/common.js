@@ -19,7 +19,7 @@ const Month = {
     December: 11
 };
 
-export function areEqual(a, b) {
+export function areEqualDates(a, b) {
     if (!a || !b) return false;
 
     return (

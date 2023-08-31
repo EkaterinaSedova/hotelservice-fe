@@ -62,6 +62,15 @@
     border: 2px solid transparent;
 }
 
+.calendar .unavailableDay {
+    border-radius: 10px;
+    padding: 4px 8px;
+    vertical-align: middle;
+    text-align: center;
+    border: 2px solid transparent;
+    color: gray;
+}
+
 .calendar .day:hover {
     background-color: #eaeaea;
     cursor: pointer;

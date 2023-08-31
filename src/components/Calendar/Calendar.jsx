@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import styles from './Calendar.module.css'
-import {areEqual, getMonthData} from "../../utils/common";
+import {areEqualDates, getMonthData} from "../../utils/common";
 import {selectInDate, selectOutDate, toggleCalendar} from "../../store/calendar/calendarSlice";
 
 const Calendar = ({closeCalendar}) => {
@@ -19,7 +19,8 @@ const Calendar = ({closeCalendar}) => {
     }
 
     const handleDayClick = (selectedDate) => {
-        const selectedDateParsed = `${selectedDate.getFullYear()}-${selectedDate.getMonth()}-${selectedDate.getDate()}`;
+        if(selectedDate < now && !areEqualDates(selectedDate, now)) return;
+        const selectedDateParsed = `${selectedDate.getFullYear()}-${selectedDate.getMonth() + 1}-${selectedDate.getDate()}`;
         if(calendarType === 'inDate') dispatch(selectInDate({inDate: selectedDateParsed}));
         else dispatch(selectOutDate({outDate: selectedDateParsed}));
         dispatch(toggleCalendar(false))
@@ -69,7 +70,7 @@ const Calendar = ({closeCalendar}) => {
                             {week.map((date, index) => date.day ?
                                 <td
                                     key={index}
-                                    className={areEqual(date.day, now) ? styles.today : styles.day}
+                                    className={date.day > now ? styles.day : areEqualDates(date.day, now) ? styles.today : styles.unavailableDay}
                                     onClick={() => {handleDayClick(date.day)}}
                                 >{date.day.getDate()}</td>
                                 :

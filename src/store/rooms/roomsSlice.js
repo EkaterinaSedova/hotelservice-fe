@@ -22,10 +22,13 @@ export const getAvailableRooms = createAsyncThunk(
     'rooms/getAvailableRooms',
     async (payload, roomAPI) => {
         try {
-            let url = `${BASE_URL}/rooms/${payload.page || 1}?limit=10&outDate=${payload.outDate}&inDate=${payload.inDate}&country=${payload.country}&city=${payload.city}`
+            let url = `${BASE_URL}/rooms/${payload.page || 1}?limit=10&outDate=${payload.outDate}&inDate=${payload.inDate}`;
+            if (payload.city) url += `&city=${payload.city}`;
+            if (payload.country) url += `&country=${payload.country}`;
             if (payload.fridge) url += `&fridge=${payload.fridge}`;
             if (payload.places) url += `&places=${payload.places}`;
             if (payload.price) url += `&price=${payload.price}`;
+            if(payload.hotelId) url += `&hotelId=${payload.hotelId}`;
             const res = await axios(url);
             return res.data;
         } catch (err) {

@@ -34,15 +34,43 @@ export const deleteBooking = createAsyncThunk(
         }
     }
 )
+export const createBooking = createAsyncThunk(
+    "bookings/createBooking",
+    async (payload, bookingAPI) => {
+        try {
+            const {data} = await axios.post(`${BASE_URL}/bookings   `, {
+                inDate: payload.inDate,
+                outDate: payload.outDate,
+                userId: payload.userId,
+                roomId: payload.roomId,
+                hotelId: payload.hotelId
+            }, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            });
+            return payload;
+        } catch (err) {
+            console.log(err);
+            return bookingAPI.rejectWithValue(err);
+        }
+    }
+);
 
 const initialState = {
     list: [],
+    showBookingForm: false,
     isLoading: false,
 }
 
 const bookingsSlice = createSlice({
     name: 'bookings',
     initialState,
+    reducers: {
+        toggleBookingForm: (state, { payload }) => {
+            state.showBookingForm = payload;
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(getBookingsOfUser.pending, (state) => {
             state.isLoaing = true;
@@ -57,4 +85,5 @@ const bookingsSlice = createSlice({
     }
 })
 
+export const {toggleBookingForm} = bookingsSlice.actions;
 export default bookingsSlice.reducer;

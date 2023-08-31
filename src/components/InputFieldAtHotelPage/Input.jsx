@@ -1,30 +1,21 @@
 import React, {useState} from 'react';
-import styles from './InputField.module.css'
+import styles from '../InputField/InputField.module.css'
 import {useDispatch, useSelector} from "react-redux";
-import {useLocation, useNavigate} from "react-router-dom";
-import {SEARCH_ROUTE} from "../../routing/paths";
 import {toggleCalendar, toggleCalendarType} from "../../store/calendar/calendarSlice";
 import Calendar from "../Calendar/Calendar";
+import {getAvailableRooms} from "../../store/rooms/roomsSlice";
+import {useParams} from "react-router-dom";
 
-const InputField = () => {
-    const navigate = useNavigate();
-    const {search} = useLocation();
+const Input = () => {
     const {inDate, outDate} = useSelector(({calendar}) => calendar);
-    const country = new URLSearchParams(search).get('country');
-    const city = new URLSearchParams(search).get('city');
-    const fridge = '';
-    const places = new URLSearchParams(search).get('places');
-
     const [values, setValues] = useState({
-        inDate: inDate,
-        outDate: outDate,
-        country: country || '',
-        city: city || '',
         fridge: '',
         price: '',
-        places: places || '',
+        places: '',
     });
     const dispatch = useDispatch();
+    const {id} = useParams();
+
     const handleChange = ({ target: { value, name } }) => {
         setValues({ ...values, [name]: value });
     };
@@ -38,19 +29,18 @@ const InputField = () => {
         if(value === 'max') setValues({...values, price: 'desc'});
     }
     const handleFindClick = () => {
-        if ((!values.city && !values.country) || (!values.inDate && !inDate) || (!values.outDate && !outDate)) {
-            alert('Вы должны указать даты заезда и выезда, а также место (страну или город)')
+        if(!inDate || !outDate) {
+            alert('Вы должны указать даты заезда и выезда')
             return;
         }
-        let route = SEARCH_ROUTE
-        if(values.country || country) route += `/?country=${values.country || country}`;
-        if(values.city || country) route += `&city=${values.city || country}`;
-        route += `&inDate=${values.inDate || inDate}&outDate=${values.outDate || outDate}`;
-        if(values.fridge || fridge) route += `&fridge=${values.fridge}`;
-        if(values.price) route += `&price=${values.price}`;
-        if(values.places) route += `&places=${values.places}`;
-        navigate(route);
-        window.location.reload();
+        dispatch(getAvailableRooms({
+            inDate: inDate,
+            outDate: outDate,
+            hotelId: id,
+            fridge: values.fridge,
+            price: values.price,
+            places: values.places
+        }));
     }
     const handleInDateClick = () => {
         dispatch(toggleCalendarType('inDate'));
@@ -72,30 +62,14 @@ const InputField = () => {
     return (
         <>
             <div className={styles.InputField}>
-                <input
-                    required
-                    name={"country"}
-                    placeholder={'Country'}
-                    className={styles.InputText}
-                    value={values.country}
-                    onChange={handleChange}
-                />
-                <input
-                    required
-                    name={"city"}
-                    placeholder={'City'}
-                    className={styles.InputText}
-                    value={values.city}
-                    onChange={handleChange}
-                />
                 <button
                     onClick={handleInDateClick}
-                    className={styles.InputDate}
-                >{inDate ? <span>{dateParsed(inDate)}</span> : <span>{'check-in'}</span>}</button>
+                    className={styles.InputButton}
+                >{inDate ? <span>{dateParsed(inDate)}</span> : <span>check-in</span>}</button>
                 <button
                     onClick={handleOutDateClick}
-                    className={styles.InputDate}
-                >{outDate ? <span>{dateParsed(outDate)}</span> : <span>{'check-out'}</span>}</button>
+                    className={styles.InputButton}
+                >{outDate ? <span>{dateParsed(outDate)}</span> : <span>check-out</span>}</button>
                 <button
                     className={styles.InputButton}
                     onClick={() => handleFindClick()}
@@ -142,4 +116,4 @@ const InputField = () => {
     );
 };
 
-export default InputField;
+export default Input;

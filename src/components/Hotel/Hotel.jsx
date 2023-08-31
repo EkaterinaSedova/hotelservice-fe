@@ -4,14 +4,16 @@ import {deleteHotel, getHotelById} from "../../store/hotels/hotelsSlice";
 import Header from "../Header/Header";
 import styles from './Hotel.module.css'
 import {useNavigate, useParams} from "react-router-dom";
-import {getRoomsInHotel} from "../../store/rooms/roomsSlice";
+import {getAvailableRooms, getRoomsInHotel} from "../../store/rooms/roomsSlice";
 import Rooms from "../ListOfRooms/Rooms";
 import {MAIN_ROUTE} from "../../routing/paths";
+import Input from "../InputFieldAtHotelPage/Input";
 
 const Hotel = () => {
     const [page, setPage] = useState(1);
     const {hotel} = useSelector(({hotels}) => hotels);
     const {list} = useSelector(({rooms}) => rooms);
+    const {inDate, outDate} = useSelector(({calendar}) => calendar);
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
     const {id} = useParams();
@@ -20,11 +22,16 @@ const Hotel = () => {
 
     useEffect(() => {
         (async () => {
-            await dispatch(getRoomsInHotel({id}))
+            if(inDate && outDate) await dispatch(getAvailableRooms({
+                inDate: inDate,
+                outDate: outDate,
+                hotelId: id,
+            }));
+            else await dispatch(getRoomsInHotel({id}));
             await dispatch(getHotelById({id}));
             setLoading(false);
         })()
-    }, [id, dispatch])
+    }, [id, inDate, outDate, dispatch])
 
     const handleNextClick = () => {
         setPage(page+1);
@@ -72,6 +79,7 @@ const Hotel = () => {
                             }
                         </div>
                     </div>
+                    <Input/>
                     <Rooms rooms={list}></Rooms>
                     <div className={styles.pageButtons}>
                         {page>1 ?
