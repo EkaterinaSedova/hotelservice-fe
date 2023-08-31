@@ -18,6 +18,12 @@ button:hover {
   background-color: #4a608d;
 }
 
+button:disabled {
+  cursor: default;
+  background-color: #4a608d;
+}
+
+
 button {
   cursor: pointer;
   border: none;

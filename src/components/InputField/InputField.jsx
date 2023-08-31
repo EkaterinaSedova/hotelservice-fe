@@ -1,20 +1,17 @@
 import React, {useState} from 'react';
 import styles from './InputField.module.css'
-import {useDispatch} from "react-redux";
-import {getAvailableRooms} from "../../store/rooms/roomsSlice";
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {SEARCH_ROUTE} from "../../routing/paths";
-import {toggleForm} from "../../store/user/userSlice";
-import {toggleCalendar} from "../../store/calendar/calendarSlice";
+import {toggleCalendar, toggleCalendarType} from "../../store/calendar/calendarSlice";
 import Calendar from "../Calendar/Calendar";
 
 const InputField = () => {
     const   navigate = useNavigate();
+    const {inDate, outDate} = useSelector(({calendar}) => calendar);
     const [values, setValues] = useState({
         country: '',
         city: '',
-        inDate: '',
-        outDate: '',
         fridge: '',
         price: '',
         places: '',
@@ -34,20 +31,30 @@ const InputField = () => {
         if(value === 'max') setValues({...values, price: 'desc'});
     }
     const handleFindClick = () => {
-        if(!values.inDate || !values.outDate || (!values.city && !values.country)) {
+        if(!values.city && !values.country) {
             alert('Вы должны указать даты заезда и выезда, а также место (страну или город)')
             return;
         }
-        let route = SEARCH_ROUTE + `/?country=${values.country}` + `&city=${values.city}` + `&inDate=${values.inDate}` + `&outDate=${values.outDate}`;
+        let route = SEARCH_ROUTE + `/?country=${values.country}&city=${values.city}&inDate=${inDate}&outDate=${outDate}`;
         if(values.fridge) route += `&fridge=${values.fridge}`;
         if(values.price) route += `&price=${values.price}`;
         if(values.places) route += `&places=${values.places}`;
         navigate(route);
         window.location.reload();
     }
+    const handleInDateClick = () => {
+        dispatch(toggleCalendarType('inDate'));
+        dispatch(toggleCalendar(true));
+    }
 
-    const handleDateClick = () => {
-        dispatch(toggleCalendar(true))
+    const handleOutDateClick = () => {
+        dispatch(toggleCalendarType('outDate'));
+        dispatch(toggleCalendar(true));
+    }
+
+    const dateParsed = (selectedDate) => {
+        const parsed = new Date(Date.parse(selectedDate));
+        return `${parsed.getDate()}.${parsed.getMonth() + 1}.${parsed.getFullYear()}`
     }
 
     const closeCalendar = () => dispatch(toggleCalendar(false));
@@ -71,25 +78,14 @@ const InputField = () => {
                     value={values.city}
                     onChange={handleChange}
                 />
-                <input
-                    required
-                    name={"inDate"}
-                    type={"date"}
-                    min={'2023-08-22'}
-                    className={styles.InputDate}
-                    value={values.inDate}
-                    onChange={handleChange}
-                />
-                <input
-                    required
-                    name={"outDate"}
-                    type={"date"}
-                    min={'2023-08-22'}
-                    className={styles.InputDate}
-                    value={values.outDate}
-                    onChange={handleChange}
-
-                />
+                <button
+                    onClick={handleInDateClick}
+                    className={styles.InputButton}
+                >{inDate ? <span>{dateParsed(inDate)}</span> : <span>check-in</span>}</button>
+                <button
+                    onClick={handleOutDateClick}
+                    className={styles.InputButton}
+                >{outDate ? <span>{dateParsed(outDate)}</span> : <span>check-out</span>}</button>
                 <button
                     className={styles.InputButton}
                     onClick={() => handleFindClick()}
@@ -130,7 +126,6 @@ const InputField = () => {
                         <option id={'max'}>max</option>
                     </select>
                 </div>
-                <button onClick={handleDateClick}>временная кнопка для календаря</button>
             </div>
             <Calendar closeCalendar={closeCalendar}/>
         </>

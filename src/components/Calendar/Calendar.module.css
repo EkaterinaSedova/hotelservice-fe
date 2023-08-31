@@ -55,6 +55,7 @@
 }
 
 .calendar .day {
+    border-radius: 10px;
     padding: 4px 8px;
     vertical-align: middle;
     text-align: center;
@@ -66,19 +67,15 @@
     cursor: pointer;
 }
 
-.calendar .day.selected {
-    border: 2px solid dodgerblue;
-}
-
-.calendar .day.today {
-    background-color: dodgerblue;
+.calendar .today{
+    padding: 4px 8px;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #2d4980;
     color: white;
 }
 
-.calendar .day.today:hover {
-    background-color: #0081ff;
-}
-
-.calendar .day.today.selected {
-    border: 2px solid lightgray;
+.calendar .today:hover {
+    background-color: #4a608d;
 }

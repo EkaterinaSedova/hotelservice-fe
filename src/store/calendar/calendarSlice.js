@@ -3,7 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 const calendarSlice = createSlice({
     name: "calendar",
     initialState: {
-        showForm: false,
+        showCalendar: false,
+        calendarType: 'inDate',
+        inDate: '',
+        outDate: '',
         monthNames: [
             'January',
             'February',
@@ -30,10 +33,19 @@ const calendarSlice = createSlice({
     },
     reducers: {
         toggleCalendar: (state, { payload }) => {
-            state.showForm = payload;
+            state.showCalendar = payload;
+        },
+        toggleCalendarType: (state, { payload }) => {
+            state.calendarType = payload;
+        },
+        selectInDate: (state, { payload }) => {
+            state.inDate = payload.inDate;
+        },
+        selectOutDate: (state, { payload }) => {
+            state.outDate = payload.outDate;
         },
     },
 });
 
-export const {toggleCalendar} = calendarSlice.actions;
+export const {toggleCalendar, selectInDate, selectOutDate, toggleCalendarType} = calendarSlice.actions;
 export default calendarSlice.reducer;
