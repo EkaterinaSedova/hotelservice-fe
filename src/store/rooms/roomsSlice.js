@@ -2,6 +2,23 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 import {BASE_URL} from "../../utils/consts";
 
+
+export const createRoom = createAsyncThunk(
+    'rooms/createRoom',
+    async (payload, roomAPI) => {
+        try {
+            const res = await axios.post(`${BASE_URL}/rooms/`, payload,{
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            });
+            return res.data;
+        } catch (err) {
+            console.log(err);
+            return roomAPI.rejectWithValue(err)
+        }
+    }
+)
 export const deleteRoom = createAsyncThunk(
     'rooms/deleteRoom',
     async (payload, roomAPI) => {
@@ -63,12 +80,18 @@ export const getRoom = createAsyncThunk(
 const initialState = {
     list: [],
     room: {},
+    showCreateRoomForm: false,
     isLoading: false,
 }
 
 const roomsSlice = createSlice({
     name: 'rooms',
     initialState,
+    reducers: {
+        toggleCreateRoomForm: (state, { payload }) => {
+            state.showCreateRoomForm = payload;
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(getAvailableRooms.pending, (state) => {
             state.isLoaing = true;
@@ -100,4 +123,5 @@ const roomsSlice = createSlice({
     }
 })
 
+export const {toggleCreateRoomForm} = roomsSlice.actions;
 export default roomsSlice.reducer;

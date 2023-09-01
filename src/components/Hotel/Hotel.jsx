@@ -4,10 +4,11 @@ import {deleteHotel, getHotelById} from "../../store/hotels/hotelsSlice";
 import Header from "../Header/Header";
 import styles from './Hotel.module.css'
 import {useNavigate, useParams} from "react-router-dom";
-import {getAvailableRooms, getRoomsInHotel} from "../../store/rooms/roomsSlice";
+import {getAvailableRooms, getRoomsInHotel, toggleCreateRoomForm} from "../../store/rooms/roomsSlice";
 import Rooms from "../ListOfRooms/Rooms";
 import {MAIN_ROUTE} from "../../routing/paths";
 import Input from "../InputFieldAtHotelPage/Input";
+import CreateRoomForm from "../CreateRoomForm/CreateRoomForm";
 
 const Hotel = () => {
     const [page, setPage] = useState(1);
@@ -55,6 +56,10 @@ const Hotel = () => {
         }
     }
 
+    const handleCreateClick = () => {
+        dispatch(toggleCreateRoomForm(true))
+    }
+
     return (
         <>
             <Header/>
@@ -77,6 +82,13 @@ const Hotel = () => {
                                     </div>
                                 )
                             }
+                            {
+                                currentUser && (currentUser.isAdmin &&
+                                    <div className={styles.deleteButton} onClick={() => {handleCreateClick()}}>
+                                        Create room
+                                    </div>
+                                )
+                            }
                         </div>
                     </div>
                     <Input/>
@@ -92,6 +104,7 @@ const Hotel = () => {
                             :
                             <span>next > > ></span>}
                     </div>
+                    <CreateRoomForm/>
                 </div>
             }
         </>
