@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './Booking.module.css'
-import {HOTEL_ROUTE, PROFILE_ROUTE} from "../../routing/paths";
+import {HOTEL_ROUTE} from "../../routing/paths";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {deleteBooking} from "../../store/bookings/bookingsSlice";
-// 0_0
+
 const Booking = ({booking}) => {
 
     const dispatch = useDispatch();

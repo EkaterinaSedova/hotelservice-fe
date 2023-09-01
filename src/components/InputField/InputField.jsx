@@ -38,7 +38,7 @@ const InputField = () => {
         if(value === 'max') setValues({...values, price: 'desc'});
     }
     const handleFindClick = () => {
-        if ((!values.city && !values.country) || (!values.inDate && !inDate) || (!values.outDate && !outDate)) {
+        if ((!values.city || !values.country) || (!values.inDate && !inDate) || (!values.outDate && !outDate)) {
             alert('Вы должны указать даты заезда и выезда, а также место (страну или город)')
             return;
         }
