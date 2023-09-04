@@ -11,6 +11,7 @@ import Input from "../InputFieldAtHotelPage/Input";
 import CreateRoomForm from "../CreateRoomForm/CreateRoomForm";
 import {getAverageRating, getFeedbacks, toggleFeedbacks} from "../../store/feedbacks/feedbacksSlice";
 import Feedbacks from "../Feedbacks/Feedbacks";
+import {toggleForm} from "../../store/user/userSlice";
 
 const Hotel = () => {
     const [page, setPage] = useState(1);
@@ -104,13 +105,9 @@ const Hotel = () => {
                         <div>
                             Now we have {hotel.feedbacks.length} feedbacks! :) Average rating: {avg}
                         </div>
-                        {
-                            currentUser && (currentUser.isAdmin &&
-                                <div className={styles.createButton} onClick={() => {handleFeedbacksClick()}}>
-                                    Leave feedback! :)
-                                </div>
-                            )
-                        }
+                        <div className={styles.createButton} onClick={() => {handleFeedbacksClick()}}>
+                                    Leave feedback!
+                        </div>
                     </div>
                     <Input/>
                     <Rooms rooms={list}></Rooms>

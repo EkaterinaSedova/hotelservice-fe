@@ -15,6 +15,23 @@ export const getFeedbacks = createAsyncThunk(
     }
 )
 
+export const createFeedback = createAsyncThunk(
+    'feedbacks/createFeedbacks',
+    async (payload, feedbackAPI) => {
+        try {
+            const res = await axios.post(`${BASE_URL}/feedbacks`,  payload, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            });
+            return res.data;
+        } catch (err) {
+            console.log(err);
+            return feedbackAPI.rejectWithValue(err);
+        }
+    }
+)
+
 export const getAverageRating = createAsyncThunk(
     'feedbacks/getAverageRating',
     async (payload, feedbackAPI) => {
@@ -50,6 +67,11 @@ const feedbacksSlice = createSlice({
         builder.addCase(getAverageRating.fulfilled, (state, action) => {
             let avg = Number(action.payload).toFixed(2)
             state.avg = avg;
+        })
+        builder.addCase(createFeedback.fulfilled, (state, action) => {
+            let feedbacks = state.feedbacks;
+            feedbacks.push(action.payload);
+            state.feedbacks = feedbacks;
         })
     }
 })
