@@ -64,11 +64,11 @@ const Input = () => {
             <div className={styles.InputField}>
                 <button
                     onClick={handleInDateClick}
-                    className={styles.InputButton}
+                    className={styles.InputDate}
                 >{inDate ? <span>{dateParsed(inDate)}</span> : <span>check-in</span>}</button>
                 <button
                     onClick={handleOutDateClick}
-                    className={styles.InputButton}
+                    className={styles.InputDate}
                 >{outDate ? <span>{dateParsed(outDate)}</span> : <span>check-out</span>}</button>
                 <button
                     className={styles.InputButton}

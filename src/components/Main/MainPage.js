@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getHotels} from "../../store/hotels/hotelsSlice";
 import Hotels from "./ListOfHotels/Hotels";
 import styles from "../SearchPage/Search.module.css";
+import Search from "../SearchField/Search";
 
 const MainPage = () => {
     const dispatch = useDispatch();
@@ -25,17 +26,18 @@ const MainPage = () => {
     }
 
     const isAvailable = () => {
-        if(list.length < 10) return false;
+        if(hotels.length < 10) return false;
         return true;
     }
 
-    const { list } = useSelector(({hotels}) => hotels);
+    const { hotels } = useSelector(({hotels}) => hotels);
 
     return (
         <>
             <Header></Header>
+            <Search></Search>
             <InputField></InputField>
-            <Hotels hotels={list}></Hotels>
+            <Hotels hotels={hotels}></Hotels>
             <div className={styles.pageButtons}>
                 {page>1 ?
                     <button onClick={() => handlePrevClick()}>{`< < < prev`}</button>

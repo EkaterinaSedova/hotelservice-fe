@@ -44,6 +44,8 @@ const Booking = ({booking}) => {
 
     return (
         <div className={styles.booking}>
+            Booking ID: {booking.id}
+            <br/>
             Check-in: {parseTimestamp(booking.inDate)}
             <br/>
             Check-out: {parseTimestamp(booking.outDate)}

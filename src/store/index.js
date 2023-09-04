@@ -5,6 +5,7 @@ import userSlice from "./user/userSlice";
 import bookingsSlice from "./bookings/bookingsSlice";
 import calendarSlice from "./calendar/calendarSlice";
 import addressSlice from "./address/addressSlice";
+import feedbacksSlice from "./feedbacks/feedbacksSlice";
 
 export const store = configureStore({
     reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
         bookings: bookingsSlice,
         calendar: calendarSlice,
         address: addressSlice,
+        feedbacks: feedbacksSlice,
     },
     devTools: true,
 });

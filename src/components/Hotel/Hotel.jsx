@@ -9,6 +9,8 @@ import Rooms from "../ListOfRooms/Rooms";
 import {MAIN_ROUTE} from "../../routing/paths";
 import Input from "../InputFieldAtHotelPage/Input";
 import CreateRoomForm from "../CreateRoomForm/CreateRoomForm";
+import {getAverageRating, getFeedbacks, toggleFeedbacks} from "../../store/feedbacks/feedbacksSlice";
+import Feedbacks from "../Feedbacks/Feedbacks";
 
 const Hotel = () => {
     const [page, setPage] = useState(1);
@@ -20,6 +22,7 @@ const Hotel = () => {
     const {id} = useParams();
     const {currentUser} = useSelector(({user}) => user);
     const navigate = useNavigate();
+    const {feedbacks, avg} = useSelector(({feedbacks}) => feedbacks);
 
     useEffect(() => {
         (async () => {
@@ -30,6 +33,7 @@ const Hotel = () => {
             }));
             else await dispatch(getRoomsInHotel({id}));
             await dispatch(getHotelById({id}));
+            await dispatch(getAverageRating({hotelId: id}));
             setLoading(false);
         })()
     }, [id, inDate, outDate, dispatch])
@@ -60,6 +64,11 @@ const Hotel = () => {
         dispatch(toggleCreateRoomForm(true))
     }
 
+    const handleFeedbacksClick = () => {
+        dispatch(getFeedbacks({hotelId: hotel.id}))
+        dispatch(toggleFeedbacks(true))
+    }
+
     return (
         <>
             <Header/>
@@ -84,12 +93,24 @@ const Hotel = () => {
                             }
                             {
                                 currentUser && (currentUser.isAdmin &&
-                                    <div className={styles.deleteButton} onClick={() => {handleCreateClick()}}>
+                                    <div className={styles.createButton} onClick={() => {handleCreateClick()}}>
                                         Create room
                                     </div>
                                 )
                             }
                         </div>
+                    </div>
+                    <div className={styles.feedbacks}>
+                        <div>
+                            Now we have {hotel.feedbacks.length} feedbacks! :) Average rating: {avg}
+                        </div>
+                        {
+                            currentUser && (currentUser.isAdmin &&
+                                <div className={styles.createButton} onClick={() => {handleFeedbacksClick()}}>
+                                    Leave feedback! :)
+                                </div>
+                            )
+                        }
                     </div>
                     <Input/>
                     <Rooms rooms={list}></Rooms>
@@ -105,6 +126,7 @@ const Hotel = () => {
                             <span>next > > ></span>}
                     </div>
                     <CreateRoomForm/>
+                    <Feedbacks feedbacks={feedbacks}></Feedbacks>
                 </div>
             }
         </>

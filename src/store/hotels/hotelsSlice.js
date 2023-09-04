@@ -24,7 +24,9 @@ export const getHotels = createAsyncThunk(
     'hotels/getHotels',
     async (payload, hotelAPI) => {
     try {
-        const res = await axios(`${BASE_URL}/hotels/${payload.page}?limit=10`);
+        let url = `${BASE_URL}/hotels/${payload.page}?limit=10`;
+        if(payload.name) url += `&name=${payload.name}`;
+        const res = await axios(url);
         return res.data;
     } catch (err) {
         console.log(err);
@@ -62,7 +64,7 @@ export const getHotelById = createAsyncThunk(
 )
 
 const initialState = {
-    list: [],
+    hotels: [],
     hotel: {},
     showCreateHotelForm: false,
     createHotelFormStage: createHotelAddress,
@@ -85,7 +87,7 @@ const hotelsSlice = createSlice({
             state.isLoaing = true;
         })
         builder.addCase(getHotels.fulfilled, (state, action) => {
-            state.list = action.payload;
+            state.hotels = action.payload;
             state.isLoading = false;
         })
         builder.addCase(getHotels.rejected, (state) => {

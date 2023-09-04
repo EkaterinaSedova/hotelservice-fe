@@ -76,3 +76,27 @@
 .deleteButton:hover {
     background-color: #d95757;
 }
+
+.createButton {
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 10px;
+    margin-left: 15px;
+    background-color: #197937;
+    color: white;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.createButton:hover {
+    background-color: #4a8f5f;
+}
+
+.feedbacks {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
