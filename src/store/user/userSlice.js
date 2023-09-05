@@ -15,6 +15,37 @@ export const getUser = createAsyncThunk(
         }
     }
 )
+
+export const changeUserRole = createAsyncThunk(
+    'users/changeUserRole',
+    async (payload, userAPI) => {
+        try {
+            const res = await axios.post(`${BASE_URL}/users/changeRole`, payload, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                }
+            });
+        } catch (err) {
+            console.log(err);
+            return userAPI.rejectWithValue(err);
+        }
+    }
+)
+
+export const getUsersByName = createAsyncThunk(
+    "users/getUsersByName",
+    async (payload, userAPI) => {
+        try {
+
+            const {data} = await axios(`${BASE_URL}/users`, {params: payload});
+            console.log(payload)
+            return data;
+        } catch (err) {
+            console.log(err);
+            return userAPI.rejectWithValue(err);
+        }
+    }
+)
 export const createUser = createAsyncThunk(
     "users/createUser",
     async (payload, userAPI) => {
@@ -61,6 +92,7 @@ const userSlice = createSlice({
     name: "user",
     initialState: {
         currentUser: null,
+        users: [],
         isLoading: false,
         formType: "login",
         showForm: false,
@@ -77,6 +109,10 @@ const userSlice = createSlice({
         },
     },
     extraReducers: (builder) => {
+        builder.addCase(getUsersByName.fulfilled, (state, action) => {
+            state.users = action.payload;
+            state.isLoading = false;
+        })
         builder.addCase(createUser.fulfilled, addCurrentUser);
         builder.addCase(loginUser.fulfilled, addCurrentUser);
         builder.addCase(getUser.fulfilled, addCurrentUser);

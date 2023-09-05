@@ -49,7 +49,7 @@ export const createBooking = createAsyncThunk(
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
             });
-            return payload;
+            return data;
         } catch (err) {
             console.log(err);
             return bookingAPI.rejectWithValue(err);

@@ -23,7 +23,7 @@ const SearchPage = () => {
 
     useEffect(() => {
         dispatch(getAvailableRooms( { page, country, city, inDate, outDate, fridge, places, price } ))
-    }, [page, dispatch])
+    }, [page, country, city, inDate, outDate, fridge, places, price, dispatch])
 
 
     const handleNextClick = () => {
