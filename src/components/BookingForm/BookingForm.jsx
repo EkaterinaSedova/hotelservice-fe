@@ -2,6 +2,7 @@ import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {createBooking, toggleBookingForm} from "../../store/bookings/bookingsSlice";
 import styles from "./BookingForm.module.css";
+import moment from "moment";
 
 const BookingForm = ({room}) => {
     const dispatch = useDispatch();
@@ -11,7 +12,7 @@ const BookingForm = ({room}) => {
     const closeBookingForm = () => dispatch(toggleBookingForm(false));
     const dateParsed = (selectedDate) => {
         const parsed = new Date(Date.parse(selectedDate));
-        return `${parsed.getDate()}.${parsed.getMonth() + 1}.${parsed.getFullYear()}`
+        return moment(parsed).format("DD MMMM YYYY")
     }
 
     const handleConfirmClick = () => {

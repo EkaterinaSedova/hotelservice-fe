@@ -5,6 +5,7 @@ import {toggleCalendar, toggleCalendarType} from "../../store/calendar/calendarS
 import Calendar from "../Calendar/Calendar";
 import {getAvailableRooms} from "../../store/rooms/roomsSlice";
 import {useParams} from "react-router-dom";
+import moment from "moment";
 
 const Input = () => {
     const {inDate, outDate} = useSelector(({calendar}) => calendar);
@@ -15,7 +16,6 @@ const Input = () => {
     });
     const dispatch = useDispatch();
     const {id} = useParams();
-
     const handleChange = ({ target: { value, name } }) => {
         setValues({ ...values, [name]: value });
     };
@@ -54,7 +54,8 @@ const Input = () => {
 
     const dateParsed = (selectedDate) => {
         const parsed = new Date(Date.parse(selectedDate));
-        return `${parsed.getDate()}.${parsed.getMonth() + 1}.${parsed.getFullYear()}`
+        console.log("selected: ", selectedDate, "\nparsed: ", parsed, "\nmoment: ", moment(parsed).format("DD MMMM YYYY"))
+        return moment(parsed).format("DD MMMM YYYY")
     }
 
     const closeCalendar = () => dispatch(toggleCalendar(false));

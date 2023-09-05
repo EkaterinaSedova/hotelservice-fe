@@ -5,6 +5,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 import {SEARCH_ROUTE} from "../../routing/paths";
 import {toggleCalendar, toggleCalendarType} from "../../store/calendar/calendarSlice";
 import Calendar from "../Calendar/Calendar";
+import moment from 'moment';
 
 const InputField = () => {
     const navigate = useNavigate();
@@ -64,7 +65,7 @@ const InputField = () => {
 
     const dateParsed = (selectedDate) => {
         const parsed = new Date(Date.parse(selectedDate));
-        return `${parsed.getDate()}.${parsed.getMonth() + 1}.${parsed.getFullYear()}`
+        return moment(parsed).format("DD MMMM YYYY")
     }
 
     const closeCalendar = () => dispatch(toggleCalendar(false));

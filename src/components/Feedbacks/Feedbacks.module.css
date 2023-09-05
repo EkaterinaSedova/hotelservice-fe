@@ -77,7 +77,7 @@ input {
 }
 
 .goodRate {
-    color: green;
+    color: #1aa41a;
 }
 
 .badRate {
@@ -85,5 +85,5 @@ input {
 }
 
 .mediumRate {
-    color: yellow;
+    color: #eaa618;
 }

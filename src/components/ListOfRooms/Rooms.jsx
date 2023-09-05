@@ -12,7 +12,7 @@ const Rooms = ({rooms}) => {
     const {currentUser} = useSelector(({user}) => user);
     const dispatch = useDispatch();
     const handleDeleteClick = (id) => {
-        if(window.confirm(`Вы уверены, что НЕ ПОЖАЛЕЕТЕ, если удалите данную комнату??`)) {
+        if(window.confirm(`Вы уверены, что хотите удалить данную комнату?`)) {
             dispatch(deleteRoom({id}));
             window.location.reload();
         }

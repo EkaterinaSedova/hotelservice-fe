@@ -4,32 +4,12 @@ import {HOTEL_ROUTE} from "../../routing/paths";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {deleteBooking} from "../../store/bookings/bookingsSlice";
+import moment from 'moment';
 
 const Booking = ({booking}) => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const parseTimestamp = (unixTime) => {
-        const date = new Date(unixTime);
-        const day = date.getDate();
-        const month = date.getMonth();
-        const year = date.getFullYear();
-        const monthNames = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-            'July',
-            'August',
-            'September',
-            'October',
-            'November',
-            'December'
-        ];
-        return `${day} ${monthNames[month]} ${year}`;
-    }
 
     const handleHotelClick = () => {
         navigate(HOTEL_ROUTE + `/${booking.hotelId}`)
@@ -46,9 +26,9 @@ const Booking = ({booking}) => {
         <div className={styles.booking}>
             Booking ID: {booking.id}
             <br/>
-            Check-in: {parseTimestamp(booking.inDate)}
+            Check-in: {moment(booking.inDate).format("DD MMMM YYYY")}
             <br/>
-            Check-out: {parseTimestamp(booking.outDate)}
+            Check-out: {moment(booking.outDate).format("DD MMMM YYYY")}
             <div className={styles.bookingButtons}>
                 <button className={styles.bookingButton} onClick={handleHotelClick}>go to hotel page</button>
                 <button className={styles.deleteButton} onClick={handleDeleteClick}>delete this booking</button>

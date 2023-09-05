@@ -11,7 +11,6 @@ import Input from "../InputFieldAtHotelPage/Input";
 import CreateRoomForm from "../CreateRoomForm/CreateRoomForm";
 import {getAverageRating, getFeedbacks, toggleFeedbacks} from "../../store/feedbacks/feedbacksSlice";
 import Feedbacks from "../Feedbacks/Feedbacks";
-import {toggleForm} from "../../store/user/userSlice";
 
 const Hotel = () => {
     const [page, setPage] = useState(1);

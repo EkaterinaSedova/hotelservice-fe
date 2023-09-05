@@ -39,14 +39,10 @@ export const getAvailableRooms = createAsyncThunk(
     'rooms/getAvailableRooms',
     async (payload, roomAPI) => {
         try {
-            let url = `${BASE_URL}/rooms/${payload.page || 1}?limit=10&outDate=${payload.outDate}&inDate=${payload.inDate}`;
-            if (payload.city) url += `&city=${payload.city}`;
-            if (payload.country) url += `&country=${payload.country}`;
-            if (payload.fridge) url += `&fridge=${payload.fridge}`;
-            if (payload.places) url += `&places=${payload.places}`;
-            if (payload.price) url += `&price=${payload.price}`;
-            if(payload.hotelId) url += `&hotelId=${payload.hotelId}`;
-            const res = await axios(url);
+            const res = await axios(`${BASE_URL}/rooms/${payload.page || 1}`, {params: {
+                    ...payload,
+                    limit: 10,
+                }});
             return res.data;
         } catch (err) {
             console.log(err);
@@ -57,7 +53,10 @@ export const getRoomsInHotel = createAsyncThunk(
     'rooms/getRoomsInHotel',
     async (payload, roomAPI) => {
         try {
-            const res = await axios(`${BASE_URL}/rooms/hotel/${payload.page || 1}?limit=10&hotelId=${payload.id}`);
+            const res = await axios(`${BASE_URL}/rooms/hotel/${payload.page || 1}`, {params: {
+                    hotelId: payload.id,
+                    limit: 10,
+                }});
             return res.data;
         } catch (err) {
             console.log(err);
