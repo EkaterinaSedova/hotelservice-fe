@@ -6,6 +6,8 @@ import {SEARCH_ROUTE} from "../../routing/paths";
 import {toggleCalendar, toggleCalendarType} from "../../store/calendar/calendarSlice";
 import Calendar from "../Calendar/Calendar";
 import moment from 'moment';
+import Down from '../../img/Down.svg'
+import North from '../../img/North.svg'
 
 const InputField = () => {
     const navigate = useNavigate();
@@ -89,20 +91,25 @@ const InputField = () => {
                     value={values.city}
                     onChange={handleChange}
                 />
-                <button
-                    onClick={handleInDateClick}
-                    className={styles.InputDate}
-                >{inDate ? <span>{dateParsed(inDate)}</span> : <span>{'check-in'}</span>}</button>
-                <button
-                    onClick={handleOutDateClick}
-                    className={styles.InputDate}
-                >{outDate ? <span>{dateParsed(outDate)}</span> : <span>{'check-out'}</span>}</button>
-                <button
+                <div className={styles.inputDateContainer} onClick={handleInDateClick}>
+                    <div
+                        className={styles.InputDate}
+                    >{inDate ? <span>{dateParsed(inDate)}</span> : <span>{'Choose date'}</span>}</div>
+                    <img src={Down} alt="choose date"/>
+                </div>
+                <div onClick={handleOutDateClick} className={styles.inputDateContainer}>
+                    <div
+                        className={styles.InputDate}
+                    >{outDate ? <span>{dateParsed(outDate)}</span> : <span>{'Choose date'}</span>}</div>
+                    <img src={Down} alt="choose date"/>
+                </div>
+                <div
                     className={styles.InputButton}
                     onClick={() => handleFindClick()}
                 >
-                    Find
-                </button>
+                    <span>Find</span>
+                    <img className={styles.north} src={North} alt="find"/>
+                </div>
             </div>
             <div className={styles.filters}>
                 <div>Additional properties: </div>

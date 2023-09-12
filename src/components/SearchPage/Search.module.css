@@ -1,5 +1,31 @@
 body {
-    font-family: Abel;
+    background-color: #FFEDD8;
+}
+.bgImg {
+    width: 100%;
+}
+
+.firstScreenText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 210px;
+}
+
+.firstScreenText h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: 32px;
+    color: #FFEDD8;
+}
+
+.firstScreenText h1 {
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    font-weight: 500;
+    font-size: 56px;
+    color: #FFEDD8;
 }
 
 .pageButtons {

@@ -1,27 +1,51 @@
+
 .headerBlock {
+    padding: 38px 80px;
     font-size: 22px;
     display: flex;
     align-items: center;
-    width: 100%;
     justify-content: space-between;
-    background-color: #2d4980;
+    background-color: #FFEDD8;
+    border-bottom: 1px solid #583101;
+}
 
+.headerLogo {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    text-decoration: none;
+    font-size: 32px;
+    color: #583101;
+}
+
+.headerComponents {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    color: #121619;
 }
 
 .headerComponent {
+    margin-right: 50px;
+    align-self: center;
     display: flex;
     justify-content: center;
-    text-decoration: none;
-    color: black;
-    cursor: pointer;
-    background-color: #ffffff;
-    padding: 3px 10px;
-    margin: 10px;
-    border-radius: 10px;
+    color: #121619;
 }
 
-.user {
-    color: white;
+.headerButton {
+    background-color: #583101;
+    color: #EFF5ED;
+    padding: 16px 24px;
+}
+
+.headerButton:hover {
+    background-color: #734416;
+}
+
+.headerButton + .headerButton {
+    margin-left: 5px;
 }
 
 .userName {

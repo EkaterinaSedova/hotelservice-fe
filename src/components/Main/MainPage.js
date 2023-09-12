@@ -6,6 +6,7 @@ import {getHotels} from "../../store/hotels/hotelsSlice";
 import Hotels from "./ListOfHotels/Hotels";
 import styles from "../SearchPage/Search.module.css";
 import Search from "../SearchField/Search";
+import firstScreenBg from "../../img/firstScreenBg.jpg"
 
 const MainPage = () => {
     const dispatch = useDispatch();
@@ -35,8 +36,17 @@ const MainPage = () => {
     return (
         <>
             <Header></Header>
-            <Search></Search>
-            <InputField></InputField>
+            <div>
+                <div style={{ background :`url(${firstScreenBg})`}}>
+                    <div className={styles.firstScreenText}>
+                        <h3>GET LUXURY AND COMFORT</h3>
+                        <h1>Welcome To The Place Where You Will Find Room Of Your Dream</h1>
+                        <Search></Search>
+                    </div>
+                </div>
+                <InputField></InputField>
+            </div>
+
             <Hotels hotels={hotels}></Hotels>
             <div className={styles.pageButtons}>
                 {page>1 ?

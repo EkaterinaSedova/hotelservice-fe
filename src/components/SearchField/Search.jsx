@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styles from "../InputField/InputField.module.css";
 import {useDispatch} from "react-redux";
 import {getHotels} from "../../store/hotels/hotelsSlice";
+import North from '../../img/North.svg'
 
 const Search = () => {
     const [hotelName, setHotelName] = useState('');
@@ -13,8 +14,7 @@ const Search = () => {
         }))
     }
     return (
-        <div className={styles.InputField}>
-            <span className={styles.InputText}>Find hotel: </span>
+        <div className={styles.searchField}>
             <input
                 required
                 name={"name"}
@@ -23,7 +23,9 @@ const Search = () => {
                 value={hotelName}
                 onChange={e => setHotelName(e.target.value)}
             />
-            <button onClick={handleSearchClick}>search</button>
+            <div onClick={handleSearchClick}>
+                <img src={North} alt="find"/>
+            </div>
         </div>
     );
 };

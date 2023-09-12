@@ -77,7 +77,7 @@ const UserRegistrationForm = ({ toggleCurrentFormType, closeForm }) => {
                         I already have an account
                     </div>
 
-                    <button type="submit">
+                    <button type="submit" className={styles.confirmButton}>
                         Create an account
                     </button>
                 </form>

@@ -24,9 +24,12 @@ export const getHotels = createAsyncThunk(
     'hotels/getHotels',
     async (payload, hotelAPI) => {
     try {
-        let url = `${BASE_URL}/hotels/${payload.page}?limit=10`;
-        if(payload.name) url += `&name=${payload.name}`;
-        const res = await axios(url);
+        const res = await axios(`${BASE_URL}/hotels`, {
+            params: {
+                ...payload,
+                limit: 10,
+            }
+        });
         return res.data;
     } catch (err) {
         console.log(err);

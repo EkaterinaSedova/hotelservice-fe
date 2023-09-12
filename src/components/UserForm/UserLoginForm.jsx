@@ -65,7 +65,7 @@ const UserLoginForm = ({ toggleCurrentFormType, closeForm }) => {
                     >
                         Create an account
                     </div>
-                    <button type="submit">
+                    <button type="submit" className={styles.confirmButton}>
                         Login
                     </button>
                 </form>

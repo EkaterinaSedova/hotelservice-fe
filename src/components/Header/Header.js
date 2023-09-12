@@ -39,24 +39,25 @@ const Header = () => {
     return (
         <div>
             <header className={styles.headerBlock}>
-                <Link to={MAIN_ROUTE} className={styles.headerComponent}>HOME</Link>
-                <div className={styles.user}>
-                    Hello, {currentUser ?
-                    <span className={styles.userName} onClick={handleUserClick}>{currentUser.name}</span>
-                    :
-                    <span>guest</span>}
-                </div>
-                <div>
-                    {currentUser ?
-                        <div className={styles.headerComponent} onClick={() => handleLogOutClick()}>log out</div>
-                        :
-                        <div className={styles.headerComponent} onClick={() => handleLoginClick()}>LOGIN</div>}
-                    {currentUser &&
-                        (currentUser.isAdmin &&
-                            <div className={styles.headerComponent} onClick={() => handleAdminClick()}>admin page</div>
-                        )
-                    }
-                </div>
+                <Link to={MAIN_ROUTE} className={styles.headerLogo}>Home</Link>
+                    <div className={styles.headerComponents}>
+                        <div className={styles.headerComponent}>
+                            Hello,
+                            {currentUser ?
+                                <span className={styles.userName} onClick={handleUserClick}>{currentUser.name}</span>
+                                :
+                                <span>guest</span>}
+                        </div>
+                        {currentUser ?
+                            <div className={styles.headerButton} onClick={() => handleLogOutClick()}>Log Out</div>
+                            :
+                            <div className={styles.headerButton} onClick={() => handleLoginClick()}>Log In</div>}
+                        {currentUser &&
+                            (currentUser.isAdmin &&
+                                <div className={styles.headerButton} onClick={() => handleAdminClick()}>Admin Page</div>
+                            )
+                        }
+                    </div>
             </header>
             <UserForm />
         </div>

@@ -6,6 +6,7 @@ import Calendar from "../Calendar/Calendar";
 import {getAvailableRooms} from "../../store/rooms/roomsSlice";
 import {useParams} from "react-router-dom";
 import moment from "moment";
+import Down from "../../img/Down.svg";
 
 const Input = () => {
     const {inDate, outDate} = useSelector(({calendar}) => calendar);
@@ -63,14 +64,18 @@ const Input = () => {
     return (
         <>
             <div className={styles.InputField}>
-                <button
-                    onClick={handleInDateClick}
-                    className={styles.InputDate}
-                >{inDate ? <span>{dateParsed(inDate)}</span> : <span>check-in</span>}</button>
-                <button
-                    onClick={handleOutDateClick}
-                    className={styles.InputDate}
-                >{outDate ? <span>{dateParsed(outDate)}</span> : <span>check-out</span>}</button>
+                <div className={styles.inputDateContainer} onClick={handleInDateClick}>
+                    <div
+                        className={styles.InputDate}
+                    >{inDate ? <span>{dateParsed(inDate)}</span> : <span>{'Choose date'}</span>}</div>
+                    <img src={Down} alt="choose date"/>
+                </div>
+                <div onClick={handleOutDateClick} className={styles.inputDateContainer}>
+                    <div
+                        className={styles.InputDate}
+                    >{outDate ? <span>{dateParsed(outDate)}</span> : <span>{'Choose date'}</span>}</div>
+                    <img src={Down} alt="choose date"/>
+                </div>
                 <button
                     className={styles.InputButton}
                     onClick={() => handleFindClick()}
