@@ -24,14 +24,16 @@ const Booking = ({booking}) => {
 
     return (
         <div className={styles.booking}>
-            Booking ID: {booking.id}
-            <br/>
-            Check-in: {moment(booking.inDate).format("DD MMMM YYYY")}
-            <br/>
-            Check-out: {moment(booking.outDate).format("DD MMMM YYYY")}
+            <div className={styles.bookingInfo}>
+                Booking ID: {booking.id}
+                <br/>
+                Check-in: {moment(booking.inDate).format("DD MMMM YYYY")}
+                <br/>
+                Check-out: {moment(booking.outDate).format("DD MMMM YYYY")}
+            </div>
             <div className={styles.bookingButtons}>
-                <button className={styles.bookingButton} onClick={handleHotelClick}>go to hotel page</button>
-                <button className={styles.deleteButton} onClick={handleDeleteClick}>delete this booking</button>
+                <div className={styles.bookingButton} onClick={handleHotelClick}>go to hotel page</div>
+                <div className={styles.deleteButton} onClick={handleDeleteClick}>delete this booking</div>
             </div>
         </div>
     );

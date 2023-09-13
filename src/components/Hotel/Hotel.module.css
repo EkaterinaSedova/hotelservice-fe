@@ -1,26 +1,38 @@
 .hotelImg {
+    box-sizing: content-box;
+    width: 500px;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+}
+
+.hotelImgContainer {
+    background: #000;
+    width: 500px;
+    height: 600px;
     display: flex;
-    min-width: 200px;
-    min-height: 200px;
-    max-width: 400px;
-    max-height: 400px;
+    align-items: center;
+    justify-content: center;
 }
 
 .hotelInfo {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
     display: flex;
     flex-direction: column;
-    margin: 0px 10px;
-    gap: 10px;
+    margin: 0 50px;
+    gap: 20px;
 }
 
 .hotelName {
-    font-size: 35px;
-    color: #2d4980;
+    font-size: 55px;
+    font-family: 'Playfair Display', serif;
+    color: #583101;
     text-decoration: none;
 }
 
 .hotel {
-    margin: 20px;
+    margin: 80px;
     display: flex;
     flex-direction: row;
 }
@@ -30,12 +42,14 @@
     justify-content: center;
     gap: 10px;
 }
+
 .pageButtons span {
+    font-family: 'Playfair Display', serif;
     font-size: 20px;
-    padding: 3px 10px;
-    background-color: #657d94;
+    padding: 10px 10px;
+    background-color: rgba(88, 49, 1, 0.51);
     color: white;
-    border-radius: 10px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,33 +58,27 @@
 .pageButtons button {
     cursor: pointer;
     border: none;
-    font-family: Abel;
+    font-family: 'Playfair Display', serif;
     font-size: 20px;
-    padding: 3px 10px;
-    background-color: #2d4980;
+    padding: 10px 10px;
+    background-color: #583101;
     color: white;
-    border-radius: 10px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .pageButtons button:hover {
-    background-color: #4a608d;
+    background-color: rgba(88, 49, 1, 0.7);
 }
-
 .deleteButton {
     cursor: pointer;
     text-decoration: none;
-    font-size: 20px;
-    padding: 10px;
-    margin-left: 15px;
-    background-color: #de2020;
-    color: white;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: #bd0c25;
+    color: #EFF5ED;
+    padding: 16px 24px;
+    max-width: 150px;
 }
 
 .deleteButton:hover {
@@ -80,19 +88,14 @@
 .createButton {
     cursor: pointer;
     text-decoration: none;
-    font-size: 20px;
-    padding: 10px;
-    margin-left: 15px;
-    background-color: #197937;
-    color: white;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: #406722;
+    color: #EFF5ED;
+    padding: 16px 24px;
+    max-width: 150px;
 }
 
 .createButton:hover {
-    background-color: #4a8f5f;
+    background-color: #4f8f4a;
 }
 
 .feedbacks {

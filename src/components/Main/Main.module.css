@@ -1,12 +1,9 @@
-body {
-    font-family: Abel;
-}
-
 .hotelItemImg {
     box-sizing: content-box;
-    width: 200px;
+    width: 300px;
     height: 100%;
     object-fit: cover;
+    opacity: 0.8;
 }
 
 .hotelItemInfo {
@@ -15,10 +12,12 @@ body {
     margin: 20px 10px;
     gap: 10px;
     font-size: 20px;
+    color: #121619;
 }
 
 .hotelItemImgContainer {
-    width: 200px;
+    background: #000;
+    width: 300px;
     height: 300px;
     display: flex;
     align-items: center;
@@ -26,9 +25,8 @@ body {
 }
 
 .hotelItem {
-    padding: 20px;
-    background-color: #d6dcf1;
-    border-radius: 5px;
+    background-color: rgba(88, 49, 1, 0.15);
+    font-family: 'Poppins', sans-serif;
     gap: 20px;
     display: flex;
     width: 90%;
@@ -41,7 +39,8 @@ body {
 
 .hotelItemName {
     font-size: 35px;
-    color: #2d4980;
+    font-family: 'Playfair Display', serif;
+    color: #583101;
     text-decoration: none;
 }
 

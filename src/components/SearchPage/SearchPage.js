@@ -6,6 +6,10 @@ import {getAvailableRooms} from "../../store/rooms/roomsSlice";
 import Rooms from "../ListOfRooms/Rooms";
 import {useLocation} from "react-router-dom";
 import styles from './Search.module.css'
+import firstScreenBg from "../../img/firstScreenBg.jpg";
+import Left from "../../img/Left.svg";
+import Right from "../../img/North.svg";
+import Footer from "../Footer/Footer";
 
 const SearchPage = () => {
     const dispatch = useDispatch();
@@ -44,6 +48,11 @@ const SearchPage = () => {
     return (
         <>
             <Header></Header>
+            <div style={{ background :`url(${firstScreenBg})`}}>
+                <div className={styles.firstScreenText}>
+                    <h3>GET LUXURY AND COMFORT</h3>
+                </div>
+            </div>
             <InputField></InputField>
             {list.length ?
                 <Rooms rooms={list}></Rooms>
@@ -52,16 +61,16 @@ const SearchPage = () => {
             }
             <div className={styles.pageButtons}>
                 {page>1 ?
-                    <button onClick={() => handlePrevClick()}>{`< < < prev`}</button>
+                    <button onClick={() => handlePrevClick()}><img src={Left} alt="prev"/></button>
                     :
-                    <span>{`< < < prev`}</span>
+                    <span><img src={Left} alt="prev"/></span>
                 }
                 {isAvailable() ?
-                    <button onClick={() => handleNextClick()}>next > > ></button>
+                    <button onClick={() => handleNextClick()}><img src={Right} alt="prev"/></button>
                     :
-                    <span>next > > ></span>}
+                    <span><img src={Right} alt="prev"/></span>}
             </div>
-
+            <Footer></Footer>
         </>
     );
 };

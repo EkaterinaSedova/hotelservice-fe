@@ -54,9 +54,10 @@ export const getRoomsInHotel = createAsyncThunk(
     'rooms/getRoomsInHotel',
     async (payload, roomAPI) => {
         try {
-            const res = await axios(`${BASE_URL}/rooms/hotel/${payload.page || 1}`, {params: {
+            const res = await axios(`${BASE_URL}/rooms/hotel/`, {params: {
                     hotelId: payload.id,
                     limit: 10,
+                    page: payload.page || 1
                 }});
             return res.data;
         } catch (err) {

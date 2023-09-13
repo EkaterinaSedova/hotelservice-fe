@@ -5,6 +5,16 @@ body {
     width: 100%;
 }
 
+.hotelsText {
+    display: flex;
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    font-weight: 500;
+    margin: 80px;
+    gap: 20px;
+    color: #583101;
+}
+
 .firstScreenText {
     display: flex;
     flex-direction: column;
@@ -36,11 +46,12 @@ body {
 }
 
 .pageButtons span {
+    font-family: 'Playfair Display', serif;
     font-size: 20px;
-    padding: 3px 10px;
-    background-color: #657d94;
+    padding: 10px 10px;
+    background-color: rgba(88, 49, 1, 0.51);
     color: white;
-    border-radius: 10px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -49,17 +60,17 @@ body {
 .pageButtons button {
     cursor: pointer;
     border: none;
-    font-family: Abel;
+    font-family: 'Playfair Display', serif;
     font-size: 20px;
-    padding: 3px 10px;
-    background-color: #2d4980;
+    padding: 10px 10px;
+    background-color: #583101;
     color: white;
-    border-radius: 10px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .pageButtons button:hover {
-    background-color: #4a608d;
+    background-color: rgba(88, 49, 1, 0.7);
 }

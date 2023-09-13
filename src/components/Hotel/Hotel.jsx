@@ -11,6 +11,10 @@ import Input from "../InputFieldAtHotelPage/Input";
 import CreateRoomForm from "../CreateRoomForm/CreateRoomForm";
 import {getAverageRating, getFeedbacks, toggleFeedbacks} from "../../store/feedbacks/feedbacksSlice";
 import Feedbacks from "../Feedbacks/Feedbacks";
+import LineWithPolygon from "../../img/LineWithPolygon.svg";
+import Left from "../../img/Left.svg";
+import Right from "../../img/North.svg";
+import Footer from "../Footer/Footer";
 
 const Hotel = () => {
     const [page, setPage] = useState(1);
@@ -77,13 +81,21 @@ const Hotel = () => {
                 :
                 <div>
                     <div className={styles.hotel}>
-                        <div>
+                        <div className={styles.hotelImgContainer}>
                             <img className={styles.hotelImg} src={'http://localhost:80/' + hotel.images[0]} alt={'hotelImage'}/>
                         </div>
                         <div className={styles.hotelInfo}>
-                            <span className={styles.hotelName}>{hotel.name}</span>
+                            <span className={styles.hotelName}>{hotel.name} <img src={LineWithPolygon} alt=""/></span>
                             <span>{hotel.description}</span>
                             <span>{hotel.starRating} ★</span>
+                            <div>
+                                Now we have {hotel.feedbacks.length} feedbacks! :) <br/> Average rating: {avg}
+                            </div>
+                            <div className={styles.createButton} onClick={() => {handleFeedbacksClick()}}>
+                                Leave feedback!
+                            </div>
+                            <div></div>
+                            <div></div>
                             {
                                 currentUser && (currentUser.isAdmin &&
                                     <div className={styles.deleteButton} onClick={() => {handleDeleteClick(hotel.id)}}>
@@ -100,29 +112,22 @@ const Hotel = () => {
                             }
                         </div>
                     </div>
-                    <div className={styles.feedbacks}>
-                        <div>
-                            Now we have {hotel.feedbacks.length} feedbacks! :) Average rating: {avg}
-                        </div>
-                        <div className={styles.createButton} onClick={() => {handleFeedbacksClick()}}>
-                                    Leave feedback!
-                        </div>
-                    </div>
                     <Input/>
                     <Rooms rooms={list}></Rooms>
                     <div className={styles.pageButtons}>
                         {page>1 ?
-                            <button onClick={() => handlePrevClick()}>{`< < < prev`}</button>
+                            <button onClick={() => handlePrevClick()}><img src={Left} alt="prev"/></button>
                             :
-                            <span>{`< < < prev`}</span>
+                            <span><img src={Left} alt="prev"/></span>
                         }
                         {isAvailable() ?
-                            <button onClick={() => handleNextClick()}>next > > ></button>
+                            <button onClick={() => handleNextClick()}><img src={Right} alt="prev"/></button>
                             :
-                            <span>next > > ></span>}
+                            <span><img src={Right} alt="prev"/></span>}
                     </div>
                     <CreateRoomForm/>
                     <Feedbacks feedbacks={feedbacks}></Feedbacks>
+                    <Footer></Footer>
                 </div>
             }
         </>

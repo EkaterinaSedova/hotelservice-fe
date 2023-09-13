@@ -35,6 +35,7 @@
 }
 
 .headerButton {
+    cursor: pointer;
     background-color: #583101;
     color: #EFF5ED;
     padding: 16px 24px;

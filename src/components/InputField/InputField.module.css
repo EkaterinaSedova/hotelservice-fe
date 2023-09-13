@@ -20,6 +20,7 @@
 .searchField input {
     background-color: rgba(255, 237, 216, 0.22);
     border: 2px solid #FFEDD8;
+    color: #FFEDD8;
 }
 
 .searchField div {
@@ -72,10 +73,14 @@
 }
 
 .filters {
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 15px;
     display: flex;
+    justify-content: center;
     align-items: center;
-    margin: 1% 0 5% 15%;
-    gap: 10px;
+    margin-top: 10px;
+    gap: 15px;
+    color: #583101;
 }
 
 .filter {
@@ -84,12 +89,18 @@
 
 .filters input {
     font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 0;
+    color: #583101;
 }
 
 .filters select {
     font-size: 14px;
-    font-family: Abel;
-    border-radius: 20px;
+    color: #583101;
+}
+
+.checkbox {
+    margin-top: 8px;
 }
 
 .north {

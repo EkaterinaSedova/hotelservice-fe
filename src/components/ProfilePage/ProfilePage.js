@@ -6,6 +6,7 @@ import Header from "../Header/Header";
 import {getBookingsOfUser} from "../../store/bookings/bookingsSlice";
 import Booking from "../Booking/Booking";
 import styles from './Profile.module.css'
+import Footer from "../Footer/Footer";
 
 const ProfilePage = () => {
     const dispatch = useDispatch();
@@ -23,9 +24,11 @@ const ProfilePage = () => {
     return (
         <>
             <Header />
-            Hello, {currentUser.name}!
-            <br/>
-            There are your bookings:
+            <div className={styles.hello}>
+                Hello, {currentUser.name}!
+                <br/>
+                There are your bookings:
+            </div>
             <div className={styles.bookings}>
                 {list.map(booking => (
                         <Booking
@@ -35,6 +38,7 @@ const ProfilePage = () => {
                     ))
                 }
             </div>
+            <Footer></Footer>
         </>
     );
 };

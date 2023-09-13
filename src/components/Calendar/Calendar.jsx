@@ -36,7 +36,7 @@ const Calendar = ({closeCalendar}) => {
                     ✖
                 </div>
                 <header>
-                    {date > now ? <button onClick={handlePrevClick}>{'<'}</button> : <button onClick={handlePrevClick} disabled>{'<'}</button>}
+                    {date > now ? <button onClick={handlePrevClick}>{'<'}</button> : <span>{'<'}</span>}
 
                     <select
                         onChange={e => {setDate(new Date(date.getFullYear(), e.target.selectedIndex))}}

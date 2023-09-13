@@ -1,23 +1,18 @@
 .roomButton {
     cursor: pointer;
     text-decoration: none;
-    font-size: 20px;
-    padding: 10px;
-    margin-left: 15px;
-    background-color: #2d4980;
-    color: white;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: #583101;
+    color: #EFF5ED;
+    padding: 16px 24px;
 }
 
 .roomButton:hover {
-    background-color: #4a608d;
+    background-color: #734416;
 }
 
 
 .roomButtons {
+    margin-right: 50px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -25,32 +20,37 @@
 
 .roomItemImg {
     box-sizing: content-box;
-    width: 200px;
+    width: 300px;
     height: 100%;
     object-fit: cover;
+    opacity: 0.8;
 }
 
 .roomItemInfo {
     display: flex;
     flex-direction: column;
-    margin: 20px 10px;
+    margin-top: 70px;
+    margin-left: 50px;
     gap: 10px;
     font-size: 20px;
+    color: #121619;
 }
 
 .roomItemImgContainer {
-    width: 200px;
-    height: 200px;
+    background: #000;
+    width: 300px;
+    height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .roomItem {
-    padding: 20px;
-    background-color: #d6dcf1;
-    border-radius: 5px;
+    background-color: rgba(88, 49, 1, 0.15);
+    font-family: 'Poppins', sans-serif;
+    gap: 20px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     width: 90%;
 }
@@ -88,15 +88,9 @@
 .deleteButton {
     cursor: pointer;
     text-decoration: none;
-    font-size: 20px;
-    padding: 10px;
-    margin-left: 15px;
-    background-color: #de2020;
-    color: white;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: #bd0c25;
+    color: #EFF5ED;
+    padding: 16px 24px;
 }
 
 .deleteButton:hover {

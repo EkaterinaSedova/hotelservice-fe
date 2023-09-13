@@ -1,0 +1,33 @@
+.footer {
+    height: 150px;
+    background-color: #583101;
+    color: #FFEDD8;
+    display: flex;
+    padding: 40px 80px;
+    justify-content: space-between;
+}
+
+.footerComponent {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.name {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.socials {
+    display: flex;
+    gap: 24px;
+}
+
+.email {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 500;
+    font-style: italic;
+}

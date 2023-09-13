@@ -113,18 +113,23 @@ const InputField = () => {
             </div>
             <div className={styles.filters}>
                 <div>Additional properties: </div>
+                <span></span>
+                <span></span>
+                <span>Fridge:</span>
                 <div>
-                    <span>Fridge:</span>
                     <input
                         required
                         name={"fridge"}
                         type={"checkbox"}
                         value={values.fridge}
                         onChange={handleCheckboxChange}
+                        className={styles.checkbox}
                     />
                 </div>
+                <span></span>
+                <span></span>
+                <span>Places: </span>
                 <div>
-                    <span>Places: </span>
                     <input
                         className={styles.filter}
                         required
@@ -136,8 +141,10 @@ const InputField = () => {
                         onChange={handleChange}
                     />
                 </div>
+                <span></span>
+                <span></span>
+                <span>Price: </span>
                 <div>
-                    <span>Price: </span>
                     <select id={'price'} onChange={handleSelectChange}>
                         <option id={'nvm'}>select...</option>
                         <option id={'min'}>min</option>

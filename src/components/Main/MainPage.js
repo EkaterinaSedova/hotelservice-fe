@@ -7,6 +7,10 @@ import Hotels from "./ListOfHotels/Hotels";
 import styles from "../SearchPage/Search.module.css";
 import Search from "../SearchField/Search";
 import firstScreenBg from "../../img/firstScreenBg.jpg"
+import LineWithPolygon from '../../img/LineWithPolygon.svg'
+import Left from '../../img/Left.svg'
+import Right from '../../img/North.svg'
+import Footer from "../Footer/Footer";
 
 const MainPage = () => {
     const dispatch = useDispatch();
@@ -46,19 +50,23 @@ const MainPage = () => {
                 </div>
                 <InputField></InputField>
             </div>
-
+            <div className={styles.hotelsText}>
+                <div>HOTELS</div>
+                <img src={LineWithPolygon} alt=""/>
+            </div>
             <Hotels hotels={hotels}></Hotels>
             <div className={styles.pageButtons}>
                 {page>1 ?
-                    <button onClick={() => handlePrevClick()}>{`< < < prev`}</button>
+                    <button onClick={() => handlePrevClick()}><img src={Left} alt="prev"/></button>
                     :
-                    <span>{`< < < prev`}</span>
+                    <span><img src={Left} alt="prev"/></span>
                 }
                 {isAvailable() ?
-                    <button onClick={() => handleNextClick()}>next > > ></button>
+                    <button onClick={() => handleNextClick()}><img src={Right} alt="prev"/></button>
                     :
-                    <span>next > > ></span>}
+                    <span><img src={Right} alt="prev"/></span>}
             </div>
+            <Footer></Footer>
         </>
     );
 };

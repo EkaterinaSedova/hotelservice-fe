@@ -1,6 +1,14 @@
 .bookings {
+    margin: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.hello {
+    margin: 50px;
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    color: #583101;
 }

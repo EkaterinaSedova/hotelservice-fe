@@ -5,7 +5,6 @@
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(3px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,12 +17,12 @@
     max-height: 60%;
     max-width: 700px;
     min-width: 20%;
-    background-color: white;
-    border-radius: 10px;
+    background-color: #FFEDD8;
     padding: 20px;
 }
 
 .form {
+    font-family: 'Poppins', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,9 +30,21 @@
     font-size: 20px;
 }
 
+.form button {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    background-color: #583101;
+    color: #EFF5ED;
+    padding: 16px 24px;
+}
+
 .title {
+    font-family: 'Playfair Display', serif;
     font-size: 25px;
-    margin-bottom: 10px;
+    margin: 20px;
+    color: #583101;
 }
 
 .closeButton {

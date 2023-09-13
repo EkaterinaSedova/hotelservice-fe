@@ -5,6 +5,7 @@ import {createFeedback, toggleFeedbacks} from "../../store/feedbacks/feedbacksSl
 import Feedback from "./Feedback";
 import {useParams} from "react-router-dom";
 import {toggleForm} from "../../store/user/userSlice";
+import Right from '../../img/North.svg'
 
 const Feedbacks = ({feedbacks}) => {
     const {id} = useParams();
@@ -48,9 +49,9 @@ const Feedbacks = ({feedbacks}) => {
                 </div>
                 <div className={styles.title}>Feedbacks:</div>
                 <div className={styles.feedbacks}>
-                    {feedbacks.map(feedback =>
+                    {feedbacks.length ? feedbacks.map(feedback =>
                         <Feedback key={feedback.id} feedback={feedback}></Feedback>
-                    )
+                    ) : <div className={styles.form}>No feedbacks yet</div>
                     }
                 </div>
                 <div className={styles.footer}>
@@ -71,7 +72,7 @@ const Feedbacks = ({feedbacks}) => {
                         value={values.rate}
                         onChange={handleChange}
                     />
-                    <button onClick={handleSubmitClick}>-></button>
+                    <button onClick={handleSubmitClick}><img src={Right} alt=""/></button>
                 </div>
             </div>
         </div>
