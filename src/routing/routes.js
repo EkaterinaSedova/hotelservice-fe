@@ -22,7 +22,7 @@ export const publicRoutes = [
 
 export const authRoutes = [
     {
-        path: PROFILE_ROUTE + '/:id',
+        path: PROFILE_ROUTE + '/:currentId',
         Component: ProfilePage,
     },
     {

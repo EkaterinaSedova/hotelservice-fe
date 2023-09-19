@@ -84,6 +84,9 @@ const hotelsSlice = createSlice({
         toggleCreateHotelFormStage: (state, { payload }) => {
             state.createHotelFormStage = payload;
         },
+        clearHotels: (state) => {
+            state.hotels = [];
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(getHotels.pending, (state) => {
@@ -121,5 +124,5 @@ const hotelsSlice = createSlice({
         })
     }
 })
-export const {toggleShowCreateHotelForm, toggleCreateHotelFormStage} = hotelsSlice.actions;
+export const {toggleShowCreateHotelForm, toggleCreateHotelFormStage, clearHotels} = hotelsSlice.actions;
 export default hotelsSlice.reducer;

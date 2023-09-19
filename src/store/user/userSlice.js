@@ -3,6 +3,18 @@ import axios from "axios";
 import {BASE_URL} from "../../utils/consts";
 import jwt_decode from "jwt-decode";
 
+export const getAnotherUser = createAsyncThunk(
+    "users/getAnotherUser",
+    async (payload, userAPI) => {
+        try {
+            const {data} = await axios(`${BASE_URL}/users/${payload.id}`);
+            return data;
+        } catch (err) {
+            console.log(err);
+            return userAPI.rejectWithValue(err);
+        }
+    }
+)
 export const getUser = createAsyncThunk(
     "users/getUser",
     async (payload, userAPI) => {
@@ -20,7 +32,7 @@ export const changeUserRole = createAsyncThunk(
     'users/changeUserRole',
     async (payload, userAPI) => {
         try {
-            const res = await axios.post(`${BASE_URL}/users/changeRole`, payload, {
+            await axios.post(`${BASE_URL}/users/changeRole`, payload, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 }
@@ -38,7 +50,6 @@ export const getUsersByName = createAsyncThunk(
         try {
 
             const {data} = await axios(`${BASE_URL}/users`, {params: payload});
-            console.log(payload)
             return data;
         } catch (err) {
             console.log(err);
@@ -88,14 +99,20 @@ const addCurrentUser = (state, {payload}) => {
     state.currentUser = payload;
 };
 
+const addUser = (state, {payload}) => {
+    state.user = payload;
+};
+
 const userSlice = createSlice({
     name: "user",
     initialState: {
         currentUser: null,
+        user: null,
         users: [],
         isLoading: false,
         formType: "login",
         showForm: false,
+        showUsersForm: false,
     },
     reducers: {
         removeUser (state) {
@@ -107,6 +124,9 @@ const userSlice = createSlice({
         toggleFormType: (state, { payload }) => {
             state.formType = payload;
         },
+        toggleUsersForm: (state, { payload }) => {
+            state.showUsersForm = payload;
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(getUsersByName.fulfilled, (state, action) => {
@@ -116,8 +136,9 @@ const userSlice = createSlice({
         builder.addCase(createUser.fulfilled, addCurrentUser);
         builder.addCase(loginUser.fulfilled, addCurrentUser);
         builder.addCase(getUser.fulfilled, addCurrentUser);
+        builder.addCase(getAnotherUser.fulfilled, addUser);
     },
 });
 
-export const {removeUser, toggleForm, toggleFormType} = userSlice.actions;
+export const {removeUser, toggleForm, toggleFormType, toggleUsersForm} = userSlice.actions;
 export default userSlice.reducer;

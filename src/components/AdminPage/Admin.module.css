@@ -1,0 +1,41 @@
+.hello {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    color: #583101;
+    margin: 50px 80px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.function {
+    background-color: rgba(88, 49, 1, 0.15);
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    color: #583101;
+    margin: 10px 50px 50px 80px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.function button {
+    font-family: 'Poppins', sans-serif;
+    padding: 16px 24px;
+}
+
+.hideBtn {
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(88, 49, 1, 0.15);
+}
+
+.hideBtn:hover {
+    background-color: rgba(88, 49, 1, 0.32);
+}
